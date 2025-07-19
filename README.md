@@ -1,46 +1,107 @@
-# Getting Started with Create React App
+# Yunesh Timsina – Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, responsive portfolio website for Yunesh Timsina, a backend developer specializing in Java, Spring Boot, MySQL, and REST APIs. Built with React, TypeScript, and Framer Motion.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Features
+- **Beautiful Hero Section** with animated background and profile photo
+- **About, Skills, Projects, Contact** pages
+- **Dark/Light Theme Toggle** (remembers your preference)
+- **Animated Transitions** with Framer Motion
+- **Responsive Design** (mobile-friendly)
+- **Downloadable Resume**
+- **SEO & PWA Optimized**
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 🛠️ Tech Stack
+- **React 19** + **TypeScript**
+- **Framer Motion** (animations)
+- **React Bootstrap** (layout)
+- **React Icons**
+- **CRACO** (custom build config)
+- **Service Worker** (PWA/offline support)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+---
 
-### `npm test`
+## 📦 Getting Started
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 1. **Clone the repo**
+```bash
+git clone https://github.com/your-username/yunesh-portfolio.git
+cd yunesh-portfolio
+```
 
-### `npm run build`
+### 2. **Install dependencies**
+```bash
+npm install
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 3. **Run locally**
+```bash
+npm start
+```
+Visit [http://localhost:3000](http://localhost:3000)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 4. **Build for production**
+```bash
+npm run build
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## 🌐 Deployment
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+You can deploy this portfolio to Vercel, Netlify, or GitHub Pages.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **Vercel/Netlify:** Import your repo, set build command to `npm run build` and output directory to `build`.
+- **GitHub Pages:**
+  1. Install: `npm install --save gh-pages`
+  2. Add to `package.json`:
+     ```json
+     "predeploy": "npm run build",
+     "deploy": "gh-pages -d build"
+     ```
+  3. Run: `npm run deploy`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+---
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## 🖼️ Customization
 
-## Learn More
+### **Change Profile Photo**
+- Replace `public/profile.jpg` with your own photo (same filename for instant update).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### **Update Resume**
+- Replace `public/Resume.pdf` with your own resume (same filename for instant update).
+- The download button in the hero section will always link to this file.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
+
+## 📁 Project Structure
+
+```
+yunesh-portfolio/
+  public/
+    profile.jpg      # Your profile photo
+    Resume.pdf       # Your resume
+    ...
+  src/
+    components/      # All React components
+    App.tsx          # Main app
+    ...
+```
+
+---
+
+## 🙏 Credits
+- [React](https://reactjs.org/)
+- [Framer Motion](https://www.framer.com/motion/)
+- [React Bootstrap](https://react-bootstrap.github.io/)
+- [React Icons](https://react-icons.github.io/react-icons/)
+
+---
+
+## © 2025 Yunesh Timsina
+
+Feel free to fork and use for your own portfolio!
