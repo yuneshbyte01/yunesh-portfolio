@@ -12,7 +12,7 @@ const Projects: React.FC = () => {
       description: 'Personalized travel recommendation system for destinations across Nepal. Features include destination suggestions, user preferences, and travel planning tools.',
       technologies: ['Spring Boot', 'MySQL', 'REST API', 'HTML/CSS'],
       github: 'https://github.com/yuneshbyte01/Wander_Wise',
-      demo: '#',
+      demo: 'https://wander-wise-alpha.vercel.app/',
       icon: FaMapMarkedAlt,
       color: '#667eea'
     },
