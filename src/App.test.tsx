@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event';
 import App from './App';
 
 window.scrollTo = () => {};
+sessionStorage.setItem('portfolio-loader-seen', 'true');
 
 function renderAt(path = '/') {
   window.history.pushState({}, '', path);
@@ -121,5 +122,26 @@ describe('Portfolio v2 application', () => {
     expect(toggle).toHaveAttribute('aria-expanded', 'false');
     await user.click(toggle);
     expect(screen.getByRole('button', { name: 'Close navigation' })).toHaveAttribute('aria-expanded', 'true');
+  });
+
+  it('renders the opening loading experience on first visit', () => {
+    sessionStorage.removeItem('portfolio-loader-seen');
+
+    renderAt('/');
+
+    const statusElement = screen.getByRole('status');
+    expect(statusElement).toBeInTheDocument();
+    expect(statusElement).toHaveAttribute('aria-live', 'polite');
+
+    const nameHeading = statusElement.querySelector('.loader-name');
+    expect(nameHeading).toHaveTextContent('Yunesh Timsina');
+
+    const labelText = statusElement.querySelector('.loader-label');
+    expect(labelText).toHaveTextContent('BACKEND ENGINEER');
+
+    const statusText = statusElement.querySelector('.loader-status');
+    expect(statusText).toHaveTextContent(/Initializing portfolio workspace/i);
+
+    sessionStorage.setItem('portfolio-loader-seen', 'true');
   });
 });
