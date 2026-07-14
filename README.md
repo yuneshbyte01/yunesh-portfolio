@@ -1,107 +1,58 @@
-# Yunesh Timsina – Portfolio
+# Yunesh Timsina Portfolio
 
-A modern, responsive portfolio website for Yunesh Timsina, a backend developer specializing in Java, Spring Boot, MySQL, and REST APIs. Built with React, TypeScript, and Framer Motion.
+Portfolio v2 - Phase 1 is a content-first engineering portfolio presenting Yunesh Timsina as a Backend Engineer focused on Java, Spring Boot, application security, relational databases, and maintainable REST APIs.
 
----
+## Current phase
 
-## 🚀 Features
-- **Beautiful Hero Section** with animated background and profile photo
-- **About, Skills, Projects, Contact** pages
-- **Dark/Light Theme Toggle** (remembers your preference)
-- **Animated Transitions** with Framer Motion
-- **Responsive Design** (mobile-friendly)
-- **Downloadable Resume**
-- **SEO & PWA Optimized**
+Phase 1 includes the complete homepage, shared application shell, responsive navigation, design system, route foundations, and not-found handling. The Projects, Experience, Skills, About, and Contact routes intentionally use Phase 2 content shells.
 
----
+## Technology stack
 
-## 🛠️ Tech Stack
-- **React 19** + **TypeScript**
-- **Framer Motion** (animations)
-- **React Bootstrap** (layout)
-- **React Icons**
-- **CRACO** (custom build config)
-- **Service Worker** (PWA/offline support)
+- React 19 and TypeScript
+- Vite
+- React Router
+- Maintainable CSS with centralized design tokens
+- Vitest and Testing Library
+- Vercel SPA rewrites
 
----
+## Local setup
 
-## 📦 Getting Started
-
-### 1. **Clone the repo**
-```bash
-git clone https://github.com/your-username/yunesh-portfolio.git
-cd yunesh-portfolio
-```
-
-### 2. **Install dependencies**
 ```bash
 npm install
+npm run dev
 ```
 
-### 3. **Run locally**
+Vite prints the local development URL after startup.
+
+## Commands
+
 ```bash
-npm start
-```
-Visit [http://localhost:3000](http://localhost:3000)
-
-### 4. **Build for production**
-```bash
-npm run build
+npm run dev       # Start the development server
+npm run lint      # Run ESLint
+npm test          # Run the test suite once
+npm run build     # Type-check and create a production build
+npm run preview   # Preview the production build locally
 ```
 
----
+## Branch strategy
 
-## 🌐 Deployment
+- `main` remains the currently deployed production portfolio.
+- `portfolio-v2` contains Portfolio v2 development.
+- Review and verify v2 before opening a pull request or merging it into `main`.
+- Do not deploy unfinished phase branches as production without review.
 
-You can deploy this portfolio to Vercel, Netlify, or GitHub Pages.
+## Vercel deployment notes
 
-- **Vercel/Netlify:** Import your repo, set build command to `npm run build` and output directory to `build`.
-- **GitHub Pages:**
-  1. Install: `npm install --save gh-pages`
-  2. Add to `package.json`:
-     ```json
-     "predeploy": "npm run build",
-     "deploy": "gh-pages -d build"
-     ```
-  3. Run: `npm run deploy`
+The project builds to `dist` using `npm run build`. `vercel.json` rewrites application routes to `index.html`, allowing direct visits to React Router paths such as `/projects` and `/experience`.
 
----
+No production domain is hardcoded in metadata. Vercel environment variables are not required by the Phase 1 frontend.
 
-## 🖼️ Customization
+## Public assets
 
-### **Change Profile Photo**
-- Replace `public/profile.jpg` with your own photo (same filename for instant update).
+- `public/Resume.pdf` - current downloadable CV
+- `public/profile.jpg` - profile photograph
+- `public/favicon.ico`, `logo192.png`, and `logo512.png` - retained site icons
 
-### **Update Resume**
-- Replace `public/Resume.pdf` with your own resume (same filename for instant update).
-- The download button in the hero section will always link to this file.
+## Future phases
 
----
-
-## 📁 Project Structure
-
-```
-yunesh-portfolio/
-  public/
-    profile.jpg      # Your profile photo
-    Resume.pdf       # Your resume
-    ...
-  src/
-    components/      # All React components
-    App.tsx          # Main app
-    ...
-```
-
----
-
-## 🙏 Credits
-- [React](https://reactjs.org/)
-- [Framer Motion](https://www.framer.com/motion/)
-- [React Bootstrap](https://react-bootstrap.github.io/)
-- [React Icons](https://react-icons.github.io/react-icons/)
-
----
-
-## © 2025 Yunesh Timsina
-
-Feel free to fork and use for your own portfolio!
+Phase 2 should add full project case studies, detailed experience, skills in engineering context, education and biography content, and a validated contact workflow. Project pages should use authentic screenshots, architecture diagrams, API documentation, and verified repository links rather than fake demo links.

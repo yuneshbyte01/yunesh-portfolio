@@ -1,56 +1,17 @@
-import React, { lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './App.css';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import LoadingScreen from './components/LoadingScreen';
-import { ThemeProvider } from './contexts/ThemeContext';
-import { useState, useEffect } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { AppLayout } from './components/layout/AppLayout';
+import { HomePage } from './pages/HomePage';
+import { NotFoundPage } from './pages/NotFoundPage';
+import { PhasePage } from './pages/PhasePage';
 
-// Lazy load components
-const Home = lazy(() => import('./components/Home'));
-const About = lazy(() => import('./components/About'));
-const Skills = lazy(() => import('./components/Skills'));
-const Projects = lazy(() => import('./components/Projects'));
-const Contact = lazy(() => import('./components/Contact'));
-
-function App() {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    // Simulate loading time
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (isLoading) {
-    return <LoadingScreen />;
-  }
-
-  return (
-    <ThemeProvider>
-      <Router>
-        <div className="App">
-          <Navbar />
-                  <main>
-          <Suspense fallback={<div className="loading-fallback">Loading...</div>}>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/skills" element={<Skills />} />
-              <Route path="/projects" element={<Projects />} />
-              <Route path="/contact" element={<Contact />} />
-            </Routes>
-          </Suspense>
-        </main>
-          <Footer />
-        </div>
-      </Router>
-    </ThemeProvider>
-  );
+export default function App() {
+  return <BrowserRouter><Routes><Route path="/" element={<AppLayout />}>
+    <Route index element={<HomePage />} />
+    <Route path="projects" element={<PhasePage eyebrow="PROJECTS / PHASE 2" title="Projects" description="Case studies for backend systems, architecture decisions, and implementation details." />} />
+    <Route path="experience" element={<PhasePage eyebrow="EXPERIENCE / PHASE 2" title="Experience" description="A detailed record of professional and project-based backend engineering work." />} />
+    <Route path="skills" element={<PhasePage eyebrow="SKILLS / PHASE 2" title="Skills" description="Backend technologies organized by practical experience and engineering context." />} />
+    <Route path="about" element={<PhasePage eyebrow="ABOUT / PHASE 2" title="About" description="Education, engineering values, and the path behind my backend work." />} />
+    <Route path="contact" element={<PhasePage eyebrow="CONTACT / PHASE 2" title="Contact" description="Ways to discuss backend engineering roles, project work, and collaboration." />} />
+    <Route path="*" element={<NotFoundPage />} />
+  </Route></Routes></BrowserRouter>;
 }
-
-export default App; 
