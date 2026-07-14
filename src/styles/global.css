@@ -1059,6 +1059,23 @@ textarea.form-control {
   overflow: hidden;
   pointer-events: none;
   z-index: 0;
+  background:
+    radial-gradient(
+      circle at var(--gradient-x, 42%) var(--gradient-y, 28%),
+      rgba(17, 138, 134, 0.20),
+      transparent 48%
+    ),
+    radial-gradient(
+      circle at var(--gradient-x-secondary, 72%) var(--gradient-y-secondary, 42%),
+      rgba(80, 70, 190, 0.16),
+      transparent 52%
+    ),
+    linear-gradient(
+      135deg,
+      #101820 0%,
+      #0d2028 45%,
+      #0d1117 100%
+    );
 }
 .hero-gradient-layer {
   position: absolute;
@@ -1066,49 +1083,34 @@ textarea.form-control {
   pointer-events: none;
 }
 .hero-layer-1 {
-  background: radial-gradient(circle at 25% 25%, rgba(47, 180, 246, 0.05) 0%, transparent 65%);
+  background: radial-gradient(circle at var(--gradient-x, 42%) var(--gradient-y, 28%), rgba(17, 138, 134, 0.22) 0%, transparent 55%);
   animation: cycle-opacity-1 25s infinite ease-in-out;
 }
 .hero-layer-2 {
-  background: radial-gradient(circle at 75% 55%, rgba(79, 70, 229, 0.055) 0%, transparent 70%);
+  background: radial-gradient(circle at var(--gradient-x-secondary, 72%) var(--gradient-y-secondary, 42%), rgba(47, 125, 246, 0.18) 0%, transparent 60%);
   animation: cycle-opacity-2 25s infinite ease-in-out;
   opacity: 0;
 }
 .hero-layer-3 {
-  background: radial-gradient(circle at 45% 75%, rgba(139, 92, 246, 0.05) 0%, transparent 65%);
+  background: radial-gradient(circle at var(--gradient-x, 42%) var(--gradient-y, 28%), rgba(139, 92, 246, 0.15) 0%, transparent 55%);
   animation: cycle-opacity-3 25s infinite ease-in-out;
   opacity: 0;
 }
 
 @keyframes cycle-opacity-1 {
-  0%, 100% { opacity: 1; }
-  33% { opacity: 0; }
-  66% { opacity: 0; }
+  0%, 100% { opacity: 0.8; }
+  33% { opacity: 0.15; }
+  66% { opacity: 0.15; }
 }
 @keyframes cycle-opacity-2 {
-  0%, 100% { opacity: 0; }
-  33% { opacity: 1; }
-  66% { opacity: 0; }
+  0%, 100% { opacity: 0.15; }
+  33% { opacity: 0.8; }
+  66% { opacity: 0.15; }
 }
 @keyframes cycle-opacity-3 {
-  0%, 100% { opacity: 0; }
-  33% { opacity: 0; }
-  66% { opacity: 1; }
-}
-
-/* Mouse Light Spotlight Effect */
-.hero-mouse-light {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  background: radial-gradient(
-    circle 400px at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(47, 125, 246, 0.065) 0%,
-    transparent 80%
-  );
-  opacity: 1;
-  transition: opacity 0.5s ease;
+  0%, 100% { opacity: 0.15; }
+  33% { opacity: 0.15; }
+  66% { opacity: 0.8; }
 }
 
 /* Cards & Tilts */
@@ -1174,12 +1176,7 @@ textarea.form-control {
   }
   .hero-layer-1, .hero-layer-2, .hero-layer-3 {
     animation: none !important;
-    opacity: 0.8 !important;
-  }
-  .hero-layer-2, .hero-layer-3 {
-    display: none !important;
-  }
-  .hero-mouse-light {
+    opacity: 0 !important;
     display: none !important;
   }
   .repo-card {

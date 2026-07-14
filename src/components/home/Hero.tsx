@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import { Github, Linkedin, Mail, FileText, ArrowDown } from 'lucide-react';
-import { useMouseLight } from '../../hooks/useMouseLight';
+import { useHeroGradient } from '../../hooks/useHeroGradient';
 
 export function Hero() {
-  const { containerRef, disableHoverEffect } = useMouseLight();
+  const { containerRef } = useHeroGradient();
 
   return (
     <section ref={containerRef} className="container" aria-labelledby="hero-title" style={{ position: 'relative' }}>
@@ -13,9 +13,6 @@ export function Hero() {
         <div className="hero-gradient-layer hero-layer-2" />
         <div className="hero-gradient-layer hero-layer-3" />
       </div>
-
-      {/* Mouse Follow Ambient Spotlight (behind content, in front of background) */}
-      {!disableHoverEffect && <div className="hero-mouse-light" />}
 
       {/* Actual Hero Content Grid */}
       <div className="hero-grid" style={{ position: 'relative', zIndex: 2 }}>
