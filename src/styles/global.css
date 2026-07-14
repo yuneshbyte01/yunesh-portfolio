@@ -1053,6 +1053,12 @@ textarea.form-control {
 /* Premium Micro-Interactions & Animation Definitions */
 
 /* Overlapping absolute containers for dynamic gradient color cycling (teal -> indigo -> purple) */
+.hero-section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: var(--bg);
+}
 .hero-gradient-wrapper {
   position: absolute;
   inset: 0;
@@ -1061,14 +1067,14 @@ textarea.form-control {
   z-index: 0;
   background:
     radial-gradient(
-      circle at var(--gradient-x, 42%) var(--gradient-y, 28%),
-      rgba(17, 138, 134, 0.20),
-      transparent 48%
+      circle 1000px at var(--gradient-x, 42%) var(--gradient-y, 28%),
+      rgba(17, 138, 134, 0.16),
+      transparent 70%
     ),
     radial-gradient(
-      circle at var(--gradient-x-secondary, 72%) var(--gradient-y-secondary, 42%),
-      rgba(80, 70, 190, 0.16),
-      transparent 52%
+      circle 1200px at var(--gradient-x-secondary, 72%) var(--gradient-y-secondary, 42%),
+      rgba(80, 70, 190, 0.12),
+      transparent 75%
     ),
     linear-gradient(
       135deg,
@@ -1077,22 +1083,31 @@ textarea.form-control {
       #0d1117 100%
     );
 }
+.hero-gradient-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 60%, var(--bg) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
 .hero-gradient-layer {
   position: absolute;
   inset: 0;
   pointer-events: none;
+  z-index: 0;
 }
 .hero-layer-1 {
-  background: radial-gradient(circle at var(--gradient-x, 42%) var(--gradient-y, 28%), rgba(17, 138, 134, 0.22) 0%, transparent 55%);
+  background: radial-gradient(circle 900px at var(--gradient-x, 42%) var(--gradient-y, 28%), rgba(17, 138, 134, 0.14) 0%, transparent 70%);
   animation: cycle-opacity-1 25s infinite ease-in-out;
 }
 .hero-layer-2 {
-  background: radial-gradient(circle at var(--gradient-x-secondary, 72%) var(--gradient-y-secondary, 42%), rgba(47, 125, 246, 0.18) 0%, transparent 60%);
+  background: radial-gradient(circle 1100px at var(--gradient-x-secondary, 72%) var(--gradient-y-secondary, 42%), rgba(47, 125, 246, 0.12) 0%, transparent 75%);
   animation: cycle-opacity-2 25s infinite ease-in-out;
   opacity: 0;
 }
 .hero-layer-3 {
-  background: radial-gradient(circle at var(--gradient-x, 42%) var(--gradient-y, 28%), rgba(139, 92, 246, 0.15) 0%, transparent 55%);
+  background: radial-gradient(circle 900px at var(--gradient-x, 42%) var(--gradient-y, 28%), rgba(139, 92, 246, 0.10) 0%, transparent 70%);
   animation: cycle-opacity-3 25s infinite ease-in-out;
   opacity: 0;
 }
