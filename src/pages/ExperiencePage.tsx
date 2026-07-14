@@ -1,6 +1,11 @@
 import { useEffect } from 'react';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 
 export function ExperiencePage() {
+  const revealHeader = useScrollReveal();
+  const revealTimeline = useScrollReveal();
+  const revealPrinciples = useScrollReveal();
+  const revealExplore = useScrollReveal();
   useEffect(() => {
     document.title = 'Experience | Yunesh Timsina';
     const metaDesc = document.querySelector('meta[name="description"]');
@@ -72,7 +77,7 @@ export function ExperiencePage() {
   return (
     <div className="page-shell">
       <div className="container" style={{ paddingTop: '32px' }}>
-        <header className="experience-header" style={{ marginBottom: '48px' }}>
+        <header ref={revealHeader.elementRef} className="experience-header" style={{ marginBottom: '48px' }}>
           <p className="eyebrow">CHRONOLOGY</p>
           <h1 id="experience-title" style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', margin: '12px 0 20px', letterSpacing: '-0.03em' }}>Experience</h1>
           <p style={{ fontSize: '1.2rem', color: 'var(--text-secondary)', maxWidth: '780px', lineHeight: '1.6' }}>
@@ -81,7 +86,7 @@ export function ExperiencePage() {
         </header>
 
         {/* Timeline Section */}
-        <section aria-label="Professional Timeline" style={{ marginBottom: '80px' }}>
+        <section ref={revealTimeline.elementRef} aria-label="Professional Timeline" style={{ marginBottom: '80px' }}>
           <div className="timeline">
             {experience.map((entry) => (
               <article key={`${entry.role}-${entry.organization}`}>
@@ -110,7 +115,7 @@ export function ExperiencePage() {
       </div>
 
       {/* Engineering Principles Section */}
-      <section className="section section-surface" aria-labelledby="principles-title">
+      <section ref={revealPrinciples.elementRef} className="section section-surface" aria-labelledby="principles-title">
         <div className="container">
           <p className="eyebrow" id="principles-title">OPERATING MODEL</p>
           <h2 style={{ fontSize: '2.2rem', margin: '8px 0 32px' }}>Engineering Principles</h2>
@@ -129,7 +134,7 @@ export function ExperiencePage() {
       </section>
 
       {/* Explore More GitHub Section */}
-      <div className="container">
+      <div ref={revealExplore.elementRef as React.RefObject<HTMLDivElement>} className="container">
         <section aria-labelledby="explore-cta-title" style={{ paddingBlock: '80px', paddingBottom: '32px' }}>
           <div style={{ border: '1px solid var(--border)', borderRadius: 'var(--radius)', background: 'var(--surface)', padding: '38px', textAlign: 'center' }}>
             <p className="eyebrow">EXPLORE MORE WORK</p>

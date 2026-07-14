@@ -1,10 +1,24 @@
 import { Link } from 'react-router-dom';
 import { Github, Linkedin, Mail, FileText, ArrowDown } from 'lucide-react';
+import { useMouseLight } from '../../hooks/useMouseLight';
 
 export function Hero() {
+  const { containerRef, disableHoverEffect } = useMouseLight();
+
   return (
-    <section className="container" aria-labelledby="hero-title">
-      <div className="hero-grid">
+    <section ref={containerRef} className="container" aria-labelledby="hero-title" style={{ position: 'relative' }}>
+      {/* Background Gradient Layers */}
+      <div className="hero-gradient-wrapper">
+        <div className="hero-gradient-layer hero-layer-1" />
+        <div className="hero-gradient-layer hero-layer-2" />
+        <div className="hero-gradient-layer hero-layer-3" />
+      </div>
+
+      {/* Mouse Follow Ambient Spotlight (behind content, in front of background) */}
+      {!disableHoverEffect && <div className="hero-mouse-light" />}
+
+      {/* Actual Hero Content Grid */}
+      <div className="hero-grid" style={{ position: 'relative', zIndex: 2 }}>
         {/* Left Column */}
         <div className="hero-left">
           <div className="hero-accent-line" />

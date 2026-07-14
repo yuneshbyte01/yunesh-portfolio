@@ -1,6 +1,12 @@
 import { useEffect } from 'react';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 
 export function AboutPage() {
+  const revealHeader = useScrollReveal();
+  const revealJourney = useScrollReveal();
+  const revealPhilosophy = useScrollReveal();
+  const revealEduFocus = useScrollReveal();
+
   useEffect(() => {
     document.title = 'About | Yunesh Timsina';
     const metaDesc = document.querySelector('meta[name="description"]');
@@ -71,7 +77,7 @@ export function AboutPage() {
   return (
     <div className="container page-shell">
       {/* Intro Section */}
-      <header className="about-header" style={{ marginBottom: '64px' }}>
+      <header ref={revealHeader.elementRef} className="about-header" style={{ marginBottom: '64px' }}>
         <p className="eyebrow">BIOGRAPHY</p>
         <h1 id="about-title" style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', margin: '12px 0 20px', letterSpacing: '-0.03em' }}>About Me</h1>
         <p style={{ fontSize: '1.2rem', color: 'var(--text-secondary)', maxWidth: '780px', lineHeight: '1.6' }}>
@@ -81,7 +87,7 @@ export function AboutPage() {
       </header>
 
       {/* Journey Timeline */}
-      <section aria-labelledby="journey-title" style={{ marginBottom: '80px', borderTop: '1px solid var(--border)', paddingTop: '64px' }}>
+      <section ref={revealJourney.elementRef} aria-labelledby="journey-title" style={{ marginBottom: '80px', borderTop: '1px solid var(--border)', paddingTop: '64px' }}>
         <p className="eyebrow" id="journey-title">TIMELINE</p>
         <h2 style={{ fontSize: '2.2rem', margin: '8px 0 32px' }}>My Journey</h2>
         <div className="timeline">
@@ -103,7 +109,7 @@ export function AboutPage() {
       </section>
 
       {/* Philosophy Section */}
-      <section aria-labelledby="philosophy-title" style={{ marginBottom: '80px', borderTop: '1px solid var(--border)', paddingTop: '64px' }}>
+      <section ref={revealPhilosophy.elementRef} aria-labelledby="philosophy-title" style={{ marginBottom: '80px', borderTop: '1px solid var(--border)', paddingTop: '64px' }}>
         <p className="eyebrow" id="philosophy-title">OPERATING PRINCIPLES</p>
         <h2 style={{ fontSize: '2.2rem', margin: '8px 0 32px' }}>Engineering Philosophy</h2>
         <div className="expertise-grid">
@@ -119,7 +125,7 @@ export function AboutPage() {
       </section>
 
       {/* Grid of Education & Current Focus */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 0.9fr', gap: '48px', borderTop: '1px solid var(--border)', paddingTop: '64px', marginTop: '32px' }}>
+      <div ref={revealEduFocus.elementRef as React.RefObject<HTMLDivElement>} style={{ display: 'grid', gridTemplateColumns: '1.1fr 0.9fr', gap: '48px', borderTop: '1px solid var(--border)', paddingTop: '64px', marginTop: '32px' }}>
         {/* Education Section */}
         <section aria-labelledby="education-title">
           <p className="eyebrow" id="education-title">ACADEMICS</p>
@@ -131,7 +137,7 @@ export function AboutPage() {
               <p style={{ fontSize: '0.95rem', color: 'var(--text)', margin: '0 0 6px', fontWeight: '500' }}>Presidential Graduate School</p>
               <p className="eyebrow" style={{ color: 'var(--muted)', fontSize: '0.72rem' }}>2023 – Present</p>
             </article>
-
+ 
             <article style={{ borderLeft: '2px solid var(--accent)', paddingLeft: '20px' }}>
               <h3 style={{ fontSize: '1.25rem', margin: '0 0 4px', fontWeight: '600' }}>Diploma in Civil Engineering</h3>
               <p style={{ fontSize: '0.95rem', color: 'var(--text)', margin: '0 0 6px', fontWeight: '500' }}>Mahendra Rastriya Secondary School</p>
@@ -140,7 +146,7 @@ export function AboutPage() {
             </article>
           </div>
         </section>
-
+ 
         {/* Current Focus Section */}
         <section aria-labelledby="focus-title">
           <p className="eyebrow" id="focus-title">ACQUISITION</p>

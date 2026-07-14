@@ -1,8 +1,89 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Github, ArrowRight } from 'lucide-react';
+import { useTilt } from '../hooks/useTilt';
+import { useScrollReveal } from '../hooks/useScrollReveal';
+
+interface FeaturedProject {
+  slug: string;
+  name: string;
+  type: string;
+  summary: string;
+  technologies: string[];
+  description: string;
+}
+
+function FeaturedProjectCard({ p }: { p: FeaturedProject }) {
+  const { elementRef } = useTilt();
+  return (
+    <article ref={elementRef as React.RefObject<HTMLDivElement>} className="repo-card">
+      <div className="repo-card-header">
+        <div className="repo-card-title-group">
+          <span className="repo-owner">yuneshbyte01 /</span>
+          <h3 className="repo-name">{p.name}</h3>
+          <span className="repo-status-chip">Completed</span>
+        </div>
+        <span className="repo-type-label">{p.type}</span>
+      </div>
+      
+      <p className="repo-desc" style={{ fontSize: '1.02rem', color: 'var(--text)' }}>{p.summary}</p>
+      <p className="repo-desc">{p.description}</p>
+
+      <div className="repo-card-footer">
+        <ul className="repo-tags">
+          {p.technologies.slice(0, 4).map((tech) => (
+            <li key={tech} className="repo-tag">{tech}</li>
+          ))}
+        </ul>
+        
+        <div className="repo-actions">
+          <a href={`https://github.com/yuneshbyte01/${p.slug === 'hamropaisa' ? 'digital-wallet-api' : p.slug === 'hamro-chalchitraghar' ? 'hamro-chalachitraghar-backend' : 'spring-auth-template'}`} target="_blank" rel="noreferrer" className="repo-action-link" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+            <Github /> Source
+          </a>
+          <Link to={`/projects/${p.slug}`} className="repo-action-link accent" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+            <ArrowRight /> Case Study
+          </Link>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+interface OtherProject {
+  name: string;
+  description: string;
+  technologies: string[];
+  repository: string;
+}
+
+function OtherProjectCard({ p }: { p: OtherProject }) {
+  const { elementRef } = useTilt();
+  return (
+    <article ref={elementRef as React.RefObject<HTMLDivElement>} className="repo-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '220px' }}>
+      <div>
+        <h3 style={{ fontSize: '1.25rem', margin: '0 0 12px', fontWeight: '600' }}>{p.name}</h3>
+        <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: '1.6', margin: '0 0 18px' }}>{p.description}</p>
+      </div>
+      <div>
+        <ul className="tag-list" aria-label={`${p.name} technologies`} style={{ margin: '0 0 20px', padding: 0 }}>
+          {p.technologies.map((t) => (
+            <li key={t} style={{ fontSize: '0.68rem', padding: '4px 8px' }}>{t}</li>
+          ))}
+        </ul>
+        <a className="text-link" href={p.repository} target="_blank" rel="noreferrer" style={{ fontSize: '0.88rem' }}>
+          GitHub repository <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </article>
+  );
+}
 
 export function ProjectsPage() {
+  const revealHeader = useScrollReveal();
+  const revealFeatured = useScrollReveal();
+  const revealOther = useScrollReveal();
+  const revealCta = useScrollReveal();
+
   useEffect(() => {
     document.title = 'Projects | Yunesh Timsina';
     const metaDesc = document.querySelector('meta[name="description"]');
@@ -65,7 +146,7 @@ export function ProjectsPage() {
 
   return (
     <div className="container page-shell">
-      <header className="projects-header" style={{ marginBottom: '64px' }}>
+      <header ref={revealHeader.elementRef} className="projects-header" style={{ marginBottom: '64px' }}>
         <p className="eyebrow">PORTFOLIO</p>
         <h1 id="projects-title" style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', margin: '12px 0 20px', letterSpacing: '-0.03em' }}>Projects</h1>
         <p style={{ fontSize: '1.2rem', color: 'var(--text-secondary)', maxWidth: '780px', lineHeight: '1.6' }}>
@@ -75,74 +156,30 @@ export function ProjectsPage() {
       </header>
 
       {/* Featured Projects */}
-      <section aria-label="Featured Projects">
+      <section ref={revealFeatured.elementRef} aria-label="Featured Projects">
         <h2 style={{ fontSize: '1.8rem', borderBottom: '1px solid var(--border)', paddingBottom: '14px', marginBottom: '32px' }}>Featured Systems</h2>
         
         <div className="project-grid">
           {featuredProjects.map((p) => (
-            <article className="repo-card" key={p.slug}>
-              <div className="repo-card-header">
-                <div className="repo-card-title-group">
-                  <span className="repo-owner">yuneshbyte01 /</span>
-                  <h3 className="repo-name">{p.name}</h3>
-                  <span className="repo-status-chip">Completed</span>
-                </div>
-                <span className="repo-type-label">{p.type}</span>
-              </div>
-              
-              <p className="repo-desc" style={{ fontSize: '1.02rem', color: 'var(--text)' }}>{p.summary}</p>
-              <p className="repo-desc">{p.description}</p>
-
-              <div className="repo-card-footer">
-                <ul className="repo-tags">
-                  {p.technologies.slice(0, 4).map((tech) => (
-                    <li key={tech} className="repo-tag">{tech}</li>
-                  ))}
-                </ul>
-                
-                <div className="repo-actions">
-                  <a href={`https://github.com/yuneshbyte01/${p.slug === 'hamropaisa' ? 'digital-wallet-api' : p.slug === 'hamro-chalchitraghar' ? 'hamro-chalachitraghar-backend' : 'spring-auth-template'}`} target="_blank" rel="noreferrer" className="repo-action-link" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-                    <Github /> Source
-                  </a>
-                  <Link to={`/projects/${p.slug}`} className="repo-action-link accent" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-                    <ArrowRight /> Case Study
-                  </Link>
-                </div>
-              </div>
-            </article>
+            <FeaturedProjectCard key={p.slug} p={p} />
           ))}
         </div>
       </section>
 
       {/* Other Projects */}
-      <section aria-labelledby="other-projects-title" style={{ marginTop: '96px', borderTop: '1px solid var(--border)', paddingTop: '64px' }}>
+      <section ref={revealOther.elementRef} aria-labelledby="other-projects-title" style={{ marginTop: '96px', borderTop: '1px solid var(--border)', paddingTop: '64px' }}>
         <p className="eyebrow" id="other-projects-title">SECONDARY REPOSITORIES</p>
         <h2 style={{ fontSize: '2.2rem', margin: '8px 0 32px' }}>Other Projects</h2>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '24px' }}>
           {otherProjects.map((p) => (
-            <article key={p.name} style={{ border: '1px solid var(--border)', borderRadius: 'var(--radius)', background: 'var(--surface)', padding: '24px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '220px' }}>
-              <div>
-                <h3 style={{ fontSize: '1.25rem', margin: '0 0 12px', fontWeight: '600' }}>{p.name}</h3>
-                <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: '1.6', margin: '0 0 18px' }}>{p.description}</p>
-              </div>
-              <div>
-                <ul className="tag-list" aria-label={`${p.name} technologies`} style={{ margin: '0 0 20px', padding: 0 }}>
-                  {p.technologies.map((t) => (
-                    <li key={t} style={{ fontSize: '0.68rem', padding: '4px 8px' }}>{t}</li>
-                  ))}
-                </ul>
-                <a className="text-link" href={p.repository} target="_blank" rel="noreferrer" style={{ fontSize: '0.88rem' }}>
-                  GitHub repository <span aria-hidden="true">↗</span>
-                </a>
-              </div>
-            </article>
+            <OtherProjectCard key={p.name} p={p} />
           ))}
         </div>
       </section>
 
       {/* GitHub Explore CTA */}
-      <section aria-labelledby="github-cta-title" style={{ marginTop: '96px', borderTop: '1px solid var(--border)', paddingTop: '64px', paddingBottom: '32px' }}>
+      <section ref={revealCta.elementRef} aria-labelledby="github-cta-title" style={{ marginTop: '96px', borderTop: '1px solid var(--border)', paddingTop: '64px', paddingBottom: '32px' }}>
         <div style={{ border: '1px solid var(--border)', borderRadius: 'var(--radius)', background: 'var(--surface)', padding: '38px', textAlign: 'center' }}>
           <p className="eyebrow">EXPLORE MORE WORK</p>
           <h2 id="github-cta-title" style={{ fontSize: '2rem', margin: '8px 0 16px' }}>Explore More Projects</h2>

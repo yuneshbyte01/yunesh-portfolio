@@ -1050,8 +1050,146 @@ textarea.form-control {
   color: var(--muted);
   text-transform: uppercase;
 }
+/* Premium Micro-Interactions & Animation Definitions */
 
+/* Overlapping absolute containers for dynamic gradient color cycling (teal -> indigo -> purple) */
+.hero-gradient-wrapper {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+.hero-gradient-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.hero-layer-1 {
+  background: radial-gradient(circle at 25% 25%, rgba(47, 180, 246, 0.05) 0%, transparent 65%);
+  animation: cycle-opacity-1 25s infinite ease-in-out;
+}
+.hero-layer-2 {
+  background: radial-gradient(circle at 75% 55%, rgba(79, 70, 229, 0.055) 0%, transparent 70%);
+  animation: cycle-opacity-2 25s infinite ease-in-out;
+  opacity: 0;
+}
+.hero-layer-3 {
+  background: radial-gradient(circle at 45% 75%, rgba(139, 92, 246, 0.05) 0%, transparent 65%);
+  animation: cycle-opacity-3 25s infinite ease-in-out;
+  opacity: 0;
+}
 
+@keyframes cycle-opacity-1 {
+  0%, 100% { opacity: 1; }
+  33% { opacity: 0; }
+  66% { opacity: 0; }
+}
+@keyframes cycle-opacity-2 {
+  0%, 100% { opacity: 0; }
+  33% { opacity: 1; }
+  66% { opacity: 0; }
+}
+@keyframes cycle-opacity-3 {
+  0%, 100% { opacity: 0; }
+  33% { opacity: 0; }
+  66% { opacity: 1; }
+}
 
+/* Mouse Light Spotlight Effect */
+.hero-mouse-light {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(
+    circle 400px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(47, 125, 246, 0.065) 0%,
+    transparent 80%
+  );
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
 
+/* Cards & Tilts */
+.repo-card {
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-style: preserve-3d;
+  will-change: transform, box-shadow, border-color;
+}
+.repo-card:hover {
+  border-color: rgba(47, 125, 246, 0.25);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+}
+
+/* Sliding Indicator Arrows on Hover */
+.text-link span, .button span {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+.text-link:hover span, .button:hover span {
+  transform: translateX(4px);
+}
+
+/* Link Underline Sliding Underlines */
+.text-link {
+  position: relative;
+  text-decoration: none;
+}
+.text-link::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: currentColor;
+  transform-origin: bottom right;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.text-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Scroll Reveal Elements */
+.reveal-item {
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal-item.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Reduced Motion Override Safeguards */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-item {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .hero-layer-1, .hero-layer-2, .hero-layer-3 {
+    animation: none !important;
+    opacity: 0.8 !important;
+  }
+  .hero-layer-2, .hero-layer-3 {
+    display: none !important;
+  }
+  .hero-mouse-light {
+    display: none !important;
+  }
+  .repo-card {
+    transform: none !important;
+    transition: none !important;
+    box-shadow: none !important;
+  }
+  .text-link span, .button span, .text-link::after {
+    transform: none !important;
+    transition: none !important;
+  }
+}
 

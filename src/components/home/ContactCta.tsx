@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
 
 export function ContactCta() {
+  const { elementRef } = useScrollReveal();
+
   return (
-    <section className="section section-surface" aria-labelledby="contact-cta-title">
+    <section ref={elementRef} className="section section-surface" aria-labelledby="contact-cta-title">
       <div className="container">
         <div className="contact-cta">
           <p className="eyebrow" id="contact-cta-title" style={{ color: 'var(--muted)', marginBottom: '8px' }}>CONTACT / 05</p>
