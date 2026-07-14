@@ -2,6 +2,14 @@ import { useEffect } from 'react';
 
 export function ExperiencePage() {
   useEffect(() => {
+    document.title = 'Experience | Yunesh Timsina';
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute(
+        'content',
+        'Explore the professional experience timeline of Yunesh Timsina, detailing backend engineering internships and personal projects.'
+      );
+    }
     window.scrollTo(0, 0);
   }, []);
 
