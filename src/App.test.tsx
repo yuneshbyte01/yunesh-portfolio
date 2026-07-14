@@ -2,6 +2,8 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from './App';
 
+window.scrollTo = () => {};
+
 function renderAt(path = '/') {
   window.history.pushState({}, '', path);
   return render(<App />);
@@ -40,6 +42,24 @@ describe('Portfolio v2 application', () => {
   it('renders a not-found page for an unknown route', () => {
     renderAt('/route-that-does-not-exist');
     expect(screen.getByRole('heading', { name: 'Page not found.' })).toBeInTheDocument();
+  });
+
+  it('renders the projects page case studies', () => {
+    renderAt('/projects');
+    expect(screen.getByRole('heading', { name: 'Projects', level: 1 })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'HamroPaisa', level: 3 })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Hamro Chalchitraghar', level: 3 })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Spring Auth Template', level: 3 })).toBeInTheDocument();
+    expect(screen.getByText('WanderWise')).toBeInTheDocument();
+  });
+
+  it('renders the experience timeline and engineering principles', () => {
+    renderAt('/experience');
+    expect(screen.getByRole('heading', { name: 'Experience', level: 1 })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Software Development Intern', level: 3 })).toBeInTheDocument();
+    expect(screen.getByText('KK Smartways Pvt. Ltd.')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Engineering Principles', level: 2 })).toBeInTheDocument();
+    expect(screen.getByText('Clean Architecture')).toBeInTheDocument();
   });
 
   it('opens and closes the accessible mobile navigation menu', async () => {

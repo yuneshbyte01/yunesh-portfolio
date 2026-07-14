@@ -1,10 +1,12 @@
 # Yunesh Timsina Portfolio
 
-Portfolio v2 - Phase 1 is a content-first engineering portfolio presenting Yunesh Timsina as a Backend Engineer focused on Java, Spring Boot, application security, relational databases, and maintainable REST APIs.
+Portfolio v2 - Phase 2 (In Progress) is an engineering portfolio presenting Yunesh Timsina as a Backend Engineer focused on Java, Spring Boot, application security, relational databases, and maintainable REST APIs.
 
 ## Current phase
 
-Phase 1 includes the complete homepage, shared application shell, responsive navigation, design system, route foundations, and not-found handling. The Projects, Experience, Skills, About, and Contact routes intentionally use Phase 2 content shells.
+Phase 2 (In Progress) includes the complete homepage, shared application shell, responsive navigation, design system, route foundations, and not-found handling. The **Projects** and **Experience** routes have been fully implemented with real content, case studies, engineering-focused CSS visual mockups (terminal outputs, database workflows, configuration code), and a vertical professional timeline.
+
+The Skills, About, and Contact routes intentionally use Phase 2 content shells.
 
 ## Technology stack
 
@@ -55,4 +57,4 @@ No production domain is hardcoded in metadata. Vercel environment variables are 
 
 ## Future phases
 
-Phase 2 should add full project case studies, detailed experience, skills in engineering context, education and biography content, and a validated contact workflow. Project pages should use authentic screenshots, architecture diagrams, API documentation, and verified repository links rather than fake demo links.
+Remaining Phase 2 tasks should add skills in engineering context, education and biography content, and a validated contact workflow. Project pages should continue to use authentic screenshots or visual layouts and verified repository links rather than fake demo links.
