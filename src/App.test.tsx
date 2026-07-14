@@ -62,6 +62,41 @@ describe('Portfolio v2 application', () => {
     expect(screen.getByText('Clean Architecture')).toBeInTheDocument();
   });
 
+  it('renders the about page biography, journey, and education', () => {
+    renderAt('/about');
+    expect(screen.getByRole('heading', { name: 'About Me', level: 1 })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'My Journey', level: 2 })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Engineering Philosophy', level: 2 })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Education', level: 2 })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Current Focus', level: 2 })).toBeInTheDocument();
+    expect(screen.getByText(/Presidential Graduate School/i)).toBeInTheDocument();
+  });
+
+  it('renders the skills page technical categories and tags', () => {
+    renderAt('/skills');
+    expect(screen.getByRole('heading', { name: 'Skills', level: 1 })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Technical Skill Groups', level: 2 })).toBeInTheDocument();
+    expect(screen.getByText('Languages')).toBeInTheDocument();
+    expect(screen.getByText('Backend')).toBeInTheDocument();
+    expect(screen.getByText('Spring Boot')).toBeInTheDocument();
+    expect(screen.getByText('PostgreSQL')).toBeInTheDocument();
+  });
+
+  it('renders the contact page details and validates empty forms', async () => {
+    const user = userEvent.setup();
+    renderAt('/contact');
+    expect(screen.getByRole('heading', { name: 'Contact', level: 1 })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'yuneshtimsina@gmail.com' })).toBeInTheDocument();
+
+    const submitBtn = screen.getByRole('button', { name: 'Send Message' });
+    await user.click(submitBtn);
+
+    expect(screen.getByText('Name is required.')).toBeInTheDocument();
+    expect(screen.getByText('Email is required.')).toBeInTheDocument();
+    expect(screen.getByText('Subject is required.')).toBeInTheDocument();
+    expect(screen.getByText('Message is required.')).toBeInTheDocument();
+  });
+
   it('opens and closes the accessible mobile navigation menu', async () => {
     const user = userEvent.setup();
     renderAt('/');
