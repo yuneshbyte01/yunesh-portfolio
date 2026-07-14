@@ -41,27 +41,27 @@ export function SpringAuthTemplatePage() {
       </Link>
 
       {/* Case Study Header */}
-      <header style={{ marginTop: '24px', marginBottom: '48px' }}>
-        <p className="eyebrow">REUSABLE FOUNDATION</p>
-        <h1 style={{ fontSize: 'clamp(2.2rem, 5vw, 3.8rem)', margin: '8px 0 16px', letterSpacing: '-0.02em' }}>Spring Auth Template</h1>
-        <p style={{ fontSize: '1.25rem', color: 'var(--text-secondary)', maxWidth: '780px', lineHeight: '1.6', marginBottom: '24px' }}>
-          A secure, modular authentication and authorization template designed to accelerate backend microservice development.
-        </p>
-
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', alignItems: 'center', marginBottom: '24px' }}>
-          <span style={{ fontSize: '0.8rem', padding: '6px 12px', background: 'var(--surface-2)', border: '1px solid var(--border)', borderRadius: '4px', fontFamily: 'var(--font-mono)' }}>
-            STATUS: COMPLETED
-          </span>
-          <a className="button button-small" href="https://github.com/yuneshbyte01/spring-auth-template" target="_blank" rel="noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-            <Github style={{ width: '16px', height: '16px' }} /> Source <ArrowUpRight style={{ width: '14px', height: '14px' }} />
-          </a>
+      <header className="case-study-header engineering-grid-bg">
+        <div>
+          <div className="header-meta">
+            <span className="eyebrow" style={{ margin: 0 }}>REUSABLE FOUNDATION</span>
+            <span className="header-status"><span className="status-dot-small" /> Completed</span>
+          </div>
+          <h1 style={{ fontSize: 'clamp(2.2rem, 5vw, 3.8rem)', margin: '8px 0 16px', letterSpacing: '-0.02em' }}>Spring Auth Template</h1>
+          <p className="header-summary">
+            A secure, modular authentication and authorization template designed to accelerate backend microservice development.
+          </p>
+          <div className="header-actions">
+            <a className="button button-small" href="https://github.com/yuneshbyte01/spring-auth-template" target="_blank" rel="noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+              <Github style={{ width: '16px', height: '16px' }} /> Source <ArrowUpRight style={{ width: '14px', height: '14px' }} />
+            </a>
+          </div>
+          <ul className="tag-list" aria-label="Spring Auth Template technologies" style={{ marginTop: '24px' }}>
+            {['Java', 'Spring Boot', 'Spring Security', 'JWT', 'MySQL', 'Hibernate / JPA', 'Maven'].map((t) => (
+              <li key={t}>{t}</li>
+            ))}
+          </ul>
         </div>
-
-        <ul className="tag-list" aria-label="Spring Auth Template technologies" style={{ marginTop: 0 }}>
-          {['Java', 'Spring Boot', 'Spring Security', 'JWT', 'MySQL', 'Hibernate / JPA', 'Maven'].map((t) => (
-            <li key={t}>{t}</li>
-          ))}
-        </ul>
       </header>
 
       {/* Overview Section */}
@@ -99,23 +99,33 @@ export function SpringAuthTemplatePage() {
 
         <div className="architecture-flow">
           <div className="architecture-node">
-            <div className="architecture-box">HTTP Authorization Request Header</div>
+            <div className="architecture-box">
+              HTTP Request <span>Auth Header</span>
+            </div>
             <div className="architecture-arrow">↓</div>
           </div>
           <div className="architecture-node">
-            <div className="architecture-box active">JwtAuthenticationFilter (Extract & Validate Signature)</div>
+            <div className="architecture-box">
+              JWT Filter <span>Signature Check</span>
+            </div>
             <div className="architecture-arrow">↓</div>
           </div>
           <div className="architecture-node">
-            <div className="architecture-box">UserDetails Loader (Fetch User Authorities from DB)</div>
+            <div className="architecture-box">
+              UserDetails Loader <span>DB Authorities</span>
+            </div>
             <div className="architecture-arrow">↓</div>
           </div>
           <div className="architecture-node">
-            <div className="architecture-box active">SecurityContextHolder (Populate authentication token)</div>
+            <div className="architecture-box">
+              Security Context <span>State Inject</span>
+            </div>
             <div className="architecture-arrow">↓</div>
           </div>
           <div className="architecture-node">
-            <div className="architecture-box">Controller Endpoint Validation (`@PreAuthorize("hasRole('ADMIN')")`)</div>
+            <div className="architecture-box">
+              REST Controller <span>Role Gate</span>
+            </div>
           </div>
         </div>
       </section>

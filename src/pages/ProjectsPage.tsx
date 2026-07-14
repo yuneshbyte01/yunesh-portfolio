@@ -78,37 +78,36 @@ export function ProjectsPage() {
       <section aria-label="Featured Projects">
         <h2 style={{ fontSize: '1.8rem', borderBottom: '1px solid var(--border)', paddingBottom: '14px', marginBottom: '32px' }}>Featured Systems</h2>
         
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '48px' }}>
-          {featuredProjects.map((p, index) => (
-            <article key={p.slug} style={{ border: '1px solid var(--border)', borderRadius: 'var(--radius)', background: 'var(--surface)', padding: '32px', display: 'grid', gridTemplateColumns: '1.4fr 0.6fr', gap: '32px' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                <div>
-                  <p className="eyebrow" style={{ color: 'var(--accent-2)' }}>0{index + 1} / {p.type}</p>
-                  <h3 style={{ fontSize: '1.8rem', margin: '8px 0 16px' }}>{p.name}</h3>
-                  <p style={{ fontSize: '1.05rem', color: 'var(--text)', marginBottom: '12px', lineHeight: '1.6' }}>
-                    {p.summary}
-                  </p>
-                  <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', marginBottom: '24px', lineHeight: '1.6' }}>
-                    {p.description}
-                  </p>
+        <div className="project-grid">
+          {featuredProjects.map((p) => (
+            <article className="repo-card" key={p.slug}>
+              <div className="repo-card-header">
+                <div className="repo-card-title-group">
+                  <span className="repo-owner">yuneshbyte01 /</span>
+                  <h3 className="repo-name">{p.name}</h3>
+                  <span className="repo-status-chip">Completed</span>
                 </div>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px', alignItems: 'center' }}>
-                  <Link className="button button-primary" to={`/projects/${p.slug}`} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-                    <ArrowRight style={{ width: '16px', height: '16px' }} /> Case Study
-                  </Link>
-                  <a className="button" href={`https://github.com/yuneshbyte01/${p.slug === 'hamropaisa' ? 'digital-wallet-api' : p.slug === 'hamro-chalchitraghar' ? 'hamro-chalachitraghar-backend' : 'spring-auth-template'}`} target="_blank" rel="noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-                    <Github style={{ width: '16px', height: '16px' }} /> Source
-                  </a>
-                </div>
+                <span className="repo-type-label">{p.type}</span>
               </div>
+              
+              <p className="repo-desc" style={{ fontSize: '1.02rem', color: 'var(--text)' }}>{p.summary}</p>
+              <p className="repo-desc">{p.description}</p>
 
-              <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                <span className="meta-label" style={{ marginBottom: '10px' }}>Technology Stack</span>
-                <ul className="tag-list" aria-label={`${p.name} technology stack`} style={{ margin: 0, padding: 0 }}>
-                  {p.technologies.map((t) => (
-                    <li key={t} style={{ fontSize: '0.72rem', padding: '5px 9px' }}>{t}</li>
+              <div className="repo-card-footer">
+                <ul className="repo-tags">
+                  {p.technologies.slice(0, 4).map((tech) => (
+                    <li key={tech} className="repo-tag">{tech}</li>
                   ))}
                 </ul>
+                
+                <div className="repo-actions">
+                  <a href={`https://github.com/yuneshbyte01/${p.slug === 'hamropaisa' ? 'digital-wallet-api' : p.slug === 'hamro-chalchitraghar' ? 'hamro-chalachitraghar-backend' : 'spring-auth-template'}`} target="_blank" rel="noreferrer" className="repo-action-link" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                    <Github /> Source
+                  </a>
+                  <Link to={`/projects/${p.slug}`} className="repo-action-link accent" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                    <ArrowRight /> Case Study
+                  </Link>
+                </div>
               </div>
             </article>
           ))}

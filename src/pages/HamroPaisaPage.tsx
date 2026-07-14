@@ -56,27 +56,27 @@ public TransactionResponse transferFunds(TransferRequest request) {
       </Link>
 
       {/* Case Study Header */}
-      <header style={{ marginTop: '24px', marginBottom: '48px' }}>
-        <p className="eyebrow">FINTECH BACKEND</p>
-        <h1 style={{ fontSize: 'clamp(2.2rem, 5vw, 3.8rem)', margin: '8px 0 16px', letterSpacing: '-0.02em' }}>HamroPaisa</h1>
-        <p style={{ fontSize: '1.25rem', color: 'var(--text-secondary)', maxWidth: '780px', lineHeight: '1.6', marginBottom: '24px' }}>
-          A production-style digital wallet API designed around strict transactional integrity, idempotency, and auditable accounting.
-        </p>
-
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', alignItems: 'center', marginBottom: '24px' }}>
-          <span style={{ fontSize: '0.8rem', padding: '6px 12px', background: 'var(--surface-2)', border: '1px solid var(--border)', borderRadius: '4px', fontFamily: 'var(--font-mono)' }}>
-            STATUS: COMPLETED
-          </span>
-          <a className="button button-small" href="https://github.com/yuneshbyte01/digital-wallet-api" target="_blank" rel="noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-            <Github style={{ width: '16px', height: '16px' }} /> Source <ArrowUpRight style={{ width: '14px', height: '14px' }} />
-          </a>
+      <header className="case-study-header engineering-grid-bg">
+        <div>
+          <div className="header-meta">
+            <span className="eyebrow" style={{ margin: 0 }}>FINTECH BACKEND</span>
+            <span className="header-status"><span className="status-dot-small" /> Completed</span>
+          </div>
+          <h1 style={{ fontSize: 'clamp(2.2rem, 5vw, 3.8rem)', margin: '8px 0 16px', letterSpacing: '-0.02em' }}>HamroPaisa</h1>
+          <p className="header-summary">
+            A production-style digital wallet API designed around strict transactional integrity, idempotency, and auditable accounting.
+          </p>
+          <div className="header-actions">
+            <a className="button button-small" href="https://github.com/yuneshbyte01/digital-wallet-api" target="_blank" rel="noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+              <Github style={{ width: '16px', height: '16px' }} /> Source <ArrowUpRight style={{ width: '14px', height: '14px' }} />
+            </a>
+          </div>
+          <ul className="tag-list" aria-label="HamroPaisa technologies" style={{ marginTop: '24px' }}>
+            {['Java', 'Spring Boot', 'PostgreSQL', 'Docker', 'Spring Security', 'JWT', 'REST API'].map((t) => (
+              <li key={t}>{t}</li>
+            ))}
+          </ul>
         </div>
-
-        <ul className="tag-list" aria-label="HamroPaisa technologies" style={{ marginTop: 0 }}>
-          {['Java', 'Spring Boot', 'PostgreSQL', 'Docker', 'Spring Security', 'JWT', 'REST API'].map((t) => (
-            <li key={t}>{t}</li>
-          ))}
-        </ul>
       </header>
 
       {/* Overview Section */}
@@ -114,27 +114,39 @@ public TransactionResponse transferFunds(TransferRequest request) {
 
         <div className="architecture-flow">
           <div className="architecture-node">
-            <div className="architecture-box">Client Application (Mobile/Web)</div>
+            <div className="architecture-box">
+              Client Application <span>Mobile / Web</span>
+            </div>
             <div className="architecture-arrow">↓</div>
           </div>
           <div className="architecture-node">
-            <div className="architecture-box">REST Controller Interfaces</div>
+            <div className="architecture-box">
+              REST Controller <span>API Entry</span>
+            </div>
             <div className="architecture-arrow">↓</div>
           </div>
           <div className="architecture-node">
-            <div className="architecture-box active">Spring Security Filter Chain (JWT Validation)</div>
+            <div className="architecture-box">
+              Spring Security <span>Filter / JWT</span>
+            </div>
             <div className="architecture-arrow">↓</div>
           </div>
           <div className="architecture-node">
-            <div className="architecture-box">Transfer Service (Idempotency check & Business validation)</div>
+            <div className="architecture-box">
+              Wallet Service <span>Core Logic</span>
+            </div>
             <div className="architecture-arrow">↓</div>
           </div>
           <div className="architecture-node">
-            <div className="architecture-box active">JPA Repositories (Optimistic Locking Version Checks)</div>
+            <div className="architecture-box">
+              JPA Repositories <span>Optimistic Lock</span>
+            </div>
             <div className="architecture-arrow">↓</div>
           </div>
           <div className="architecture-node">
-            <div className="architecture-box">PostgreSQL Relational Ledger DB</div>
+            <div className="architecture-box">
+              PostgreSQL <span>Ledger DB</span>
+            </div>
           </div>
         </div>
       </section>

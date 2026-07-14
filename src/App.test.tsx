@@ -13,7 +13,7 @@ describe('Portfolio v2 application', () => {
   it('renders the homepage and backend engineering statement', () => {
     renderAt('/');
     expect(screen.getByRole('heading', { name: 'Yunesh Timsina', level: 1 })).toBeInTheDocument();
-    expect(screen.getByText(/secure, scalable backend systems/i)).toBeInTheDocument();
+    expect(screen.getByText(/secure backend systems/i)).toBeInTheDocument();
   });
 
   it('renders the main navigation routes', () => {
