@@ -97,6 +97,23 @@ describe('Portfolio v2 application', () => {
     expect(screen.getByText('Message is required.')).toBeInTheDocument();
   });
 
+  it('renders the individual project case studies', () => {
+    renderAt('/projects/hamropaisa');
+    expect(screen.getByRole('heading', { name: 'HamroPaisa', level: 1 })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /Double-Entry Ledger/i, level: 3 })).toBeInTheDocument();
+    expect(screen.getByText(/WalletService.java/i)).toBeInTheDocument();
+
+    renderAt('/projects/hamro-chalchitraghar');
+    expect(screen.getByRole('heading', { name: 'Hamro Chalchitraghar', level: 1 })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /Seat Locking Lifecycle/i, level: 3 })).toBeInTheDocument();
+    expect(screen.getByText(/BookingService.java/i)).toBeInTheDocument();
+
+    renderAt('/projects/spring-auth-template');
+    expect(screen.getByRole('heading', { name: 'Spring Auth Template', level: 1 })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /Stateless JWT Authentication/i, level: 3 })).toBeInTheDocument();
+    expect(screen.getByText(/JwtTokenUtil.java/i)).toBeInTheDocument();
+  });
+
   it('opens and closes the accessible mobile navigation menu', async () => {
     const user = userEvent.setup();
     renderAt('/');
