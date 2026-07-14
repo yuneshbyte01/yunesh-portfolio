@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Github, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
 
 interface FormState {
   name: string;
@@ -245,51 +246,34 @@ export function ContactPage() {
             <p className="eyebrow" id="info-section-title">DIRECT DIRECTORY</p>
             <h2 style={{ fontSize: '1.8rem', margin: '8px 0 24px' }}>Information</h2>
             
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-              <div>
-                <span className="meta-label" style={{ fontSize: '0.7rem' }}>Email Address</span>
-                <p style={{ margin: '4px 0 0', fontSize: '1rem', fontWeight: '500', color: 'var(--text)' }}>
-                  <a href="mailto:yuneshtimsina@gmail.com" className="text-link" style={{ fontSize: '1rem' }}>
-                    yuneshtimsina@gmail.com
-                  </a>
-                </p>
+            <div className="contact-info-list">
+              <div className="contact-info-item">
+                <Mail aria-hidden="true" />
+                <a href="mailto:yuneshtimsina@gmail.com" className="text-link">yuneshtimsina@gmail.com</a>
               </div>
 
-              <div>
-                <span className="meta-label" style={{ fontSize: '0.7rem' }}>LinkedIn Profile</span>
-                <p style={{ margin: '4px 0 0', fontSize: '1rem', fontWeight: '500', color: 'var(--text)' }}>
-                  <a
-                    href="https://www.linkedin.com/in/yunesh-timsina-898775346/"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-link"
-                    style={{ fontSize: '1rem' }}
-                  >
-                    yunesh-timsina-898775346 <span aria-hidden="true">↗</span>
-                  </a>
-                </p>
+              <div className="contact-info-item">
+                <Linkedin aria-hidden="true" />
+                <a href="https://www.linkedin.com/in/yunesh-timsina-898775346/" target="_blank" rel="noreferrer" className="text-link">
+                  linkedin.com/in/yunesh-timsina-898775346
+                </a>
               </div>
 
-              <div>
-                <span className="meta-label" style={{ fontSize: '0.7rem' }}>GitHub Profile</span>
-                <p style={{ margin: '4px 0 0', fontSize: '1rem', fontWeight: '500', color: 'var(--text)' }}>
-                  <a
-                    href="https://github.com/yuneshbyte01"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-link"
-                    style={{ fontSize: '1rem' }}
-                  >
-                    github.com/yuneshbyte01 <span aria-hidden="true">↗</span>
-                  </a>
-                </p>
+              <div className="contact-info-item">
+                <Github aria-hidden="true" />
+                <a href="https://github.com/yuneshbyte01" target="_blank" rel="noreferrer" className="text-link">
+                  github.com/yuneshbyte01
+                </a>
               </div>
 
-              <div>
-                <span className="meta-label" style={{ fontSize: '0.7rem' }}>Location</span>
-                <p style={{ margin: '4px 0 0', fontSize: '1.05rem', fontWeight: '500', color: 'var(--text)' }}>
-                  Kathmandu, Nepal
-                </p>
+              <div className="contact-info-item">
+                <MapPin aria-hidden="true" />
+                <span style={{ color: 'var(--text)', fontWeight: '500' }}>Kathmandu, Nepal</span>
+              </div>
+
+              <div className="contact-info-item">
+                <Phone aria-hidden="true" />
+                <span style={{ color: 'var(--text)', fontWeight: '500' }}>+977 98XXXXXXXX</span>
               </div>
             </div>
           </section>

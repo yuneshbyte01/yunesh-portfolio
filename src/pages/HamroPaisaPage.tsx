@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Github, ArrowLeft, ArrowUpRight } from 'lucide-react';
 
 export function HamroPaisaPage() {
   useEffect(() => {
@@ -50,8 +51,8 @@ public TransactionResponse transferFunds(TransferRequest request) {
 
   return (
     <div className="container page-shell">
-      <Link className="text-link" to="/projects" style={{ marginBottom: '32px' }}>
-        <span aria-hidden="true">←</span> Back to Projects
+      <Link className="text-link" to="/projects" style={{ marginBottom: '32px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+        <ArrowLeft style={{ width: '16px', height: '16px' }} /> Back to Projects
       </Link>
 
       {/* Case Study Header */}
@@ -66,8 +67,8 @@ public TransactionResponse transferFunds(TransferRequest request) {
           <span style={{ fontSize: '0.8rem', padding: '6px 12px', background: 'var(--surface-2)', border: '1px solid var(--border)', borderRadius: '4px', fontFamily: 'var(--font-mono)' }}>
             STATUS: COMPLETED
           </span>
-          <a className="button button-small" href="https://github.com/yuneshbyte01/digital-wallet-api" target="_blank" rel="noreferrer">
-            GitHub Repository <span aria-hidden="true">↗</span>
+          <a className="button button-small" href="https://github.com/yuneshbyte01/digital-wallet-api" target="_blank" rel="noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+            <Github style={{ width: '16px', height: '16px' }} /> Source <ArrowUpRight style={{ width: '14px', height: '14px' }} />
           </a>
         </div>
 

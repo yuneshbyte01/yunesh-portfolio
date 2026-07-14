@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Github, ArrowRight } from 'lucide-react';
 
 export function ProjectsPage() {
   useEffect(() => {
@@ -92,11 +93,11 @@ export function ProjectsPage() {
                   </p>
                 </div>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px', alignItems: 'center' }}>
-                  <Link className="button button-primary" to={`/projects/${p.slug}`}>
-                    Read Case Study <span aria-hidden="true">→</span>
+                  <Link className="button button-primary" to={`/projects/${p.slug}`} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                    <ArrowRight style={{ width: '16px', height: '16px' }} /> Case Study
                   </Link>
-                  <a className="button" href={`https://github.com/yuneshbyte01/${p.slug === 'hamropaisa' ? 'digital-wallet-api' : p.slug === 'hamro-chalchitraghar' ? 'hamro-chalachitraghar-backend' : 'spring-auth-template'}`} target="_blank" rel="noreferrer">
-                    Repository <span aria-hidden="true">↗</span>
+                  <a className="button" href={`https://github.com/yuneshbyte01/${p.slug === 'hamropaisa' ? 'digital-wallet-api' : p.slug === 'hamro-chalchitraghar' ? 'hamro-chalachitraghar-backend' : 'spring-auth-template'}`} target="_blank" rel="noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                    <Github style={{ width: '16px', height: '16px' }} /> Source
                   </a>
                 </div>
               </div>

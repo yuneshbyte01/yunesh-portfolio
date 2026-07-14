@@ -27,12 +27,12 @@ describe('Portfolio v2 application', () => {
   it('links to the existing resume asset', () => {
     renderAt('/');
     expect(screen.getByRole('link', { name: 'Resume' })).toHaveAttribute('href', '/Resume.pdf');
-    expect(screen.getByRole('link', { name: 'Download CV' })).toHaveAttribute('href', '/Resume.pdf');
+    expect(screen.getAllByRole('link', { name: 'Download CV' })[0]).toHaveAttribute('href', '/Resume.pdf');
   });
 
   it('links every featured project to its repository', () => {
     renderAt('/');
-    const repositories = screen.getAllByRole('link', { name: /GitHub repository/i });
+    const repositories = screen.getAllByRole('link', { name: /Source/i });
     expect(repositories).toHaveLength(3);
     expect(repositories[0]).toHaveAttribute('href', 'https://github.com/yuneshbyte01/digital-wallet-api');
     expect(repositories[1]).toHaveAttribute('href', 'https://github.com/yuneshbyte01/hamro-chalachitraghar-backend');
