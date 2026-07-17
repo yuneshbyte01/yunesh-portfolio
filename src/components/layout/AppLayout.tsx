@@ -1,8 +1,11 @@
 import { Outlet } from 'react-router-dom';
 import { Footer } from './Footer';
 import { Header } from './Header';
+import { useHeroGradient } from '../../hooks/useHeroGradient';
 
 export function AppLayout() {
+  const { containerRef } = useHeroGradient();
+
   return (
     <>
       <a
@@ -12,7 +15,18 @@ export function AppLayout() {
         Skip to content
       </a>
       <Header />
-      <main id="main-content"><Outlet /></main>
+      <div ref={containerRef} className="relative min-h-screen overflow-hidden bg-[var(--bg)]">
+        {/* Background Gradient Layers */}
+        <div className="hero-gradient-wrapper">
+          <div className="hero-gradient-layer hero-layer-1" />
+          <div className="hero-gradient-layer hero-layer-2" />
+          <div className="hero-gradient-layer hero-layer-3" />
+        </div>
+        
+        <main id="main-content" className="relative z-10">
+          <Outlet />
+        </main>
+      </div>
       <Footer />
     </>
   );

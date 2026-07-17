@@ -35,9 +35,9 @@ export function ExperiencePreview() {
                     {entry.location && <span className="block mt-2 text-[var(--muted)]">{entry.location}</span>}
                   </p>
                 </div>
-                <ul className="max-w-[820px] pl-[19px] text-[var(--text-secondary)] leading-[1.7] text-[0.92rem]">
+                <ul className="max-w-[820px] pl-[19px] text-[var(--text-secondary)] leading-[1.7] text-[0.92rem] mt-4 flex flex-col gap-1.5 list-none">
                   {entry.highlights.map((h) => (
-                    <li key={h} style={{ listStyleType: 'disc' }}>{h}</li>
+                    <li key={h} className="relative before:content-[''] before:absolute before:left-[-14px] before:top-[8px] before:w-1.5 before:h-1.5 before:rounded-full before:bg-[var(--accent)]/80">{h}</li>
                   ))}
                 </ul>
               </div>

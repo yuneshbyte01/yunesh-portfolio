@@ -75,20 +75,21 @@ export function ExperiencePage() {
                   style={{ boxShadow: '0 0 0 4px var(--bg), 0 0 0 5px var(--border)' }}
                   aria-hidden="true"
                 />
-                <div className="bg-[rgba(17,24,34,0.52)] backdrop-blur-[12px] border border-[var(--glass-border)] rounded-[var(--glass-radius-md)] px-6 py-[22px] shadow-[0_6px_20px_rgba(0,0,0,0.12),inset_0_1px_0_var(--glass-highlight)] transition-[border-color,background] duration-200 hover:border-[rgba(120,165,255,0.18)] hover:bg-[rgba(20,29,41,0.62)]">
-                  <div className="flex justify-between gap-8 mb-4">
+                <div className="group relative overflow-hidden bg-[rgba(17,24,34,0.52)] backdrop-blur-[12px] border border-[var(--glass-border)] rounded-[var(--glass-radius-md)] px-6 py-[22px] shadow-[0_6px_20px_rgba(0,0,0,0.12),inset_0_1px_0_var(--glass-highlight)] transition-all duration-300 hover:border-[var(--accent)]/30 hover:bg-[rgba(20,29,41,0.62)] hover:shadow-[0_20px_50px_rgba(76,141,255,0.12)]">
+                  <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="flex justify-between gap-8 mb-4 flex-wrap sm:flex-nowrap">
                     <div>
-                      <h3 style={{ fontSize: '1.45rem', fontWeight: '600', marginBottom: '4px' }}>{entry.role}</h3>
+                      <h3 style={{ fontSize: '1.45rem', fontWeight: '600', marginBottom: '4px' }} className="group-hover:text-[var(--accent)] transition-colors duration-200">{entry.role}</h3>
                       <p style={{ fontWeight: '500', color: 'var(--text)', margin: 0 }}>{entry.organization}</p>
                     </div>
-                    <p className="font-mono text-[0.76rem] font-semibold tracking-[0.1em] uppercase text-[var(--accent)] shrink-0 text-right">
+                    <p className="font-mono text-[0.76rem] font-semibold tracking-[0.1em] uppercase text-[var(--accent)] shrink-0 text-left">
                       {entry.period}
                       {entry.location && <span className="block mt-1.5 text-[0.75rem] text-[var(--muted)]">{entry.location}</span>}
                     </p>
                   </div>
-                  <ul style={{ marginTop: '16px', paddingLeft: '20px' }}>
+                  <ul className="max-w-[820px] pl-[19px] text-[var(--text-secondary)] leading-[1.7] text-[0.92rem] mt-4 flex flex-col gap-1.5 list-none m-0">
                     {entry.highlights.map((h) => (
-                      <li key={h} style={{ marginBottom: '8px', lineHeight: '1.6' }}>{h}</li>
+                      <li key={h} className="relative before:content-[''] before:absolute before:left-[-14px] before:top-[8px] before:w-1.5 before:h-1.5 before:rounded-full before:bg-[var(--accent)]/80">{h}</li>
                     ))}
                   </ul>
                 </div>
@@ -99,16 +100,18 @@ export function ExperiencePage() {
       </div>
 
       {/* Engineering Principles */}
-      <section ref={revealPrinciples.elementRef} className="py-[clamp(72px,10vw,128px)] bg-[var(--surface)] border-y border-[var(--border)]" aria-labelledby="principles-title">
-        <div className="container">
+      <section ref={revealPrinciples.elementRef} className="py-[clamp(72px,10vw,128px)] bg-[var(--surface)] border-y border-[var(--border)] relative" aria-labelledby="principles-title">
+        <div className="absolute left-[-10%] top-[20%] w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(76,141,255,0.02)_0%,transparent_70%)] pointer-events-none z-0" />
+        <div className="container relative z-10">
           <p className="eyebrow" id="principles-title">OPERATING MODEL</p>
           <h2 style={{ fontSize: '2.2rem', margin: '8px 0 32px' }}>Engineering Principles</h2>
           <div className="grid grid-cols-3 gap-4 max-md:grid-cols-2 max-sm:grid-cols-1">
             {principles.map((p) => (
               <article
                 key={p.title}
-                className="min-h-[180px] p-[26px] bg-[rgba(17,24,34,0.52)] backdrop-blur-[12px] border border-[var(--glass-border)] rounded-[var(--glass-radius-md)] shadow-[0_6px_20px_rgba(0,0,0,0.12),inset_0_1px_0_var(--glass-highlight)] transition-[border-color,background] duration-200 hover:border-[rgba(120,165,255,0.18)] hover:bg-[rgba(20,29,41,0.62)]"
+                className="group relative overflow-hidden min-h-[180px] p-[26px] bg-[rgba(17,24,34,0.52)] backdrop-blur-[12px] border border-[var(--glass-border)] rounded-[var(--glass-radius-md)] shadow-[0_6px_20px_rgba(0,0,0,0.12),inset_0_1px_0_var(--glass-highlight)] transition-all duration-300 hover:border-[var(--accent)]/30 hover:bg-[rgba(20,29,41,0.62)] hover:shadow-[0_20px_50px_rgba(76,141,255,0.12)]"
               >
+                <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <p className="meta-label" style={{ color: 'var(--accent)' }}>{p.title}</p>
                 <p style={{ marginTop: '12px', fontSize: '0.92rem', color: 'var(--text-secondary)', lineHeight: '1.6' }}>{p.description}</p>
               </article>
@@ -120,7 +123,8 @@ export function ExperiencePage() {
       {/* GitHub CTA */}
       <div ref={revealExplore.elementRef as React.RefObject<HTMLDivElement>} className="container">
         <section aria-labelledby="explore-cta-title" className="py-20 pb-8">
-          <div style={{ border: '1px solid var(--border)', borderRadius: 'var(--radius)', background: 'var(--surface)', padding: '38px', textAlign: 'center' }}>
+          <div style={{ border: '1px solid var(--border)', borderRadius: 'var(--radius)', background: 'var(--surface)', padding: '38px', textAlign: 'center' }} className="group relative overflow-hidden">
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-30" />
             <p className="eyebrow">EXPLORE MORE WORK</p>
             <h2 id="explore-cta-title" style={{ fontSize: '2rem', margin: '8px 0 16px' }}>Explore More Projects</h2>
             <p style={{ fontSize: '1.05rem', color: 'var(--text-secondary)', maxWidth: '680px', margin: '0 auto 28px', lineHeight: '1.6' }}>

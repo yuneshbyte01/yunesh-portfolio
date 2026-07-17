@@ -4,7 +4,7 @@ import { Github, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
 interface FormState   { name: string; email: string; subject: string; message: string; }
 interface FormErrors  { name?: string; email?: string; subject?: string; message?: string; }
 
-const fieldCls = 'w-full bg-[var(--surface)] border border-[var(--border)] rounded text-[var(--text)] px-4 py-3 text-[0.94rem] leading-[1.5] font-[inherit] transition-[border-color,box-shadow] duration-200 outline-none placeholder:text-[var(--muted)] focus:border-[var(--accent)] focus:shadow-[0_0_0_3px_rgba(76,141,255,0.15)]';
+const fieldCls = 'w-full bg-[rgba(17,24,34,0.48)] border border-[var(--border)] rounded-md text-[var(--text)] px-4 py-3.5 text-[0.94rem] leading-[1.5] font-[inherit] transition-all duration-200 outline-none placeholder:text-[var(--muted)] hover:border-[var(--border)]/80 focus:border-[var(--accent)] focus:bg-[rgba(17,24,34,0.65)] focus:shadow-[0_0_0_4px_rgba(76,141,255,0.12)]';
 
 export function ContactPage() {
   useEffect(() => {
@@ -69,7 +69,8 @@ export function ContactPage() {
 
       <div className="grid grid-cols-[1.1fr_0.9fr] gap-12 border-t border-[var(--border)] pt-16 max-md:grid-cols-1">
         {/* Form */}
-        <section aria-labelledby="form-section-title">
+        <section aria-labelledby="form-section-title" className="group relative overflow-hidden bg-[rgba(17,24,34,0.32)] border border-[var(--border)] rounded-[var(--glass-radius-md)] p-6 sm:p-8 shadow-[0_6px_20px_rgba(0,0,0,0.1)]">
+          <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-[var(--accent)]/40 to-transparent" />
           <h2 id="form-section-title" className="sr-only">Contact Form</h2>
 
           {submitStatus === 'success' && (
@@ -88,12 +89,12 @@ export function ContactPage() {
               { id: 'contact-subject', label: 'Subject',        name: 'subject', type: 'text',  placeholder: 'Project discussion / Role description', error: errors.subject },
             ] as const).map((field) => (
               <div key={field.name} className="flex flex-col gap-2">
-                <label htmlFor={field.id} className="font-medium text-[0.94rem] text-[var(--text)]">{field.label}</label>
+                <label htmlFor={field.id} className="font-medium text-[0.9rem] text-[var(--text)] font-mono uppercase tracking-[0.05em]">{field.label}</label>
                 <input
                   type={field.type} id={field.id} name={field.name}
                   value={formData[field.name as keyof FormState]}
                   onChange={handleInputChange}
-                  className={`${fieldCls} ${field.error ? 'border-[#ff5f56]' : ''}`}
+                  className={`${fieldCls} ${field.error ? 'border-[#ff5f56] focus:border-[#ff5f56] focus:shadow-[0_0_0_4px_rgba(255,95,86,0.15)]' : ''}`}
                   placeholder={field.placeholder}
                   aria-invalid={!!field.error}
                   aria-describedby={field.error ? `error-${field.name}` : undefined}
@@ -107,12 +108,12 @@ export function ContactPage() {
 
             {/* Message textarea */}
             <div className="flex flex-col gap-2">
-              <label htmlFor="contact-message" className="font-medium text-[0.94rem] text-[var(--text)]">Message</label>
+              <label htmlFor="contact-message" className="font-medium text-[0.9rem] text-[var(--text)] font-mono uppercase tracking-[0.05em]">Message</label>
               <textarea
                 id="contact-message" name="message" rows={7}
                 value={formData.message}
                 onChange={handleInputChange}
-                className={`${fieldCls} resize-y min-h-[120px] ${errors.message ? 'border-[#ff5f56]' : ''}`}
+                className={`${fieldCls} resize-y min-h-[120px] ${errors.message ? 'border-[#ff5f56] focus:border-[#ff5f56] focus:shadow-[0_0_0_4px_rgba(255,95,86,0.15)]' : ''}`}
                 placeholder="Describe the project goals or details..."
                 aria-invalid={!!errors.message}
                 aria-describedby={errors.message ? 'error-message' : undefined}
@@ -125,7 +126,7 @@ export function ContactPage() {
 
             <button
               type="submit"
-              className="button button-primary w-fit min-h-[44px]"
+              className="button button-primary w-fit min-h-[44px] cursor-pointer"
               disabled={isSubmitting}
             >
               {isSubmitting ? (
@@ -139,7 +140,7 @@ export function ContactPage() {
         </section>
 
         {/* Info + Availability */}
-        <div className="flex flex-col gap-12">
+        <div className="flex flex-col gap-10">
           <section aria-labelledby="info-section-title">
             <p className="eyebrow" id="info-section-title">DIRECT DIRECTORY</p>
             <h2 style={{ fontSize: '1.8rem', margin: '8px 0 24px' }}>Information</h2>
@@ -152,8 +153,10 @@ export function ContactPage() {
                 { icon: <MapPin aria-hidden="true" />, content: <span className="text-[var(--text)] font-medium">Kathmandu, Nepal</span> },
                 { icon: <Phone aria-hidden="true" />, content: <span className="text-[var(--text)] font-medium">+977 98XXXXXXXX</span> },
               ].map((item, i) => (
-                <div key={i} className="flex items-center gap-3.5 text-[1rem] [&_svg]:text-[var(--accent)] [&_svg]:w-5 [&_svg]:h-5 [&_svg]:shrink-0">
-                  {item.icon}
+                <div key={i} className="flex items-center gap-4 text-[1rem] group">
+                  <div className="w-10 h-10 rounded-md border border-[var(--glass-border)] bg-[rgba(17,24,34,0.52)] flex items-center justify-center text-[var(--accent)] transition-colors duration-200 group-hover:border-[var(--accent)]/30 group-hover:text-[var(--text)] shrink-0">
+                    {item.icon}
+                  </div>
                   {item.content}
                 </div>
               ))}
@@ -163,9 +166,14 @@ export function ContactPage() {
           <section aria-labelledby="avail-section-title" className="border-t border-[var(--border)] pt-8">
             <p className="eyebrow" id="avail-section-title">AVAILABILITY</p>
             <h2 style={{ fontSize: '1.8rem', margin: '8px 0 24px' }}>Interested In</h2>
-            <ul style={{ paddingLeft: '20px', margin: 0, color: 'var(--text-secondary)', lineHeight: '1.8' }}>
+            <ul className="flex flex-wrap gap-2 list-none p-0 m-0">
               {interests.map((interest) => (
-                <li key={interest} style={{ marginBottom: '6px' }}>{interest}</li>
+                <li 
+                  key={interest} 
+                  className="px-3.5 py-1.5 border border-[var(--border)] rounded-md bg-[rgba(28,33,40,0.4)] text-[0.88rem] font-medium text-[var(--text-secondary)] transition-all duration-200 hover:border-[var(--accent)]/30 hover:text-[var(--text)] hover:bg-[rgba(28,33,40,0.7)]"
+                >
+                  {interest}
+                </li>
               ))}
             </ul>
           </section>

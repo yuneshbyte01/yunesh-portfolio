@@ -1,19 +1,9 @@
 import { Link } from 'react-router-dom';
 import { Github, Linkedin, Mail, FileText, ArrowDown } from 'lucide-react';
-import { useHeroGradient } from '../../hooks/useHeroGradient';
 
 export function Hero() {
-  const { containerRef } = useHeroGradient();
-
   return (
-    <section ref={containerRef} className="hero-section" aria-labelledby="hero-title">
-      {/* Background Gradient Layers */}
-      <div className="hero-gradient-wrapper">
-        <div className="hero-gradient-layer hero-layer-1" />
-        <div className="hero-gradient-layer hero-layer-2" />
-        <div className="hero-gradient-layer hero-layer-3" />
-      </div>
-
+    <section className="hero-section" aria-labelledby="hero-title">
       <div className="container relative z-[2]">
         {/* Hero Content Grid */}
         <div className="hero-grid">
@@ -50,8 +40,13 @@ export function Hero() {
           {/* Center Column (Portrait Visual Overlap) */}
           <div className="flex justify-center items-end relative z-[1]">
             <div className="portrait-accent-glow" />
-            <div className="relative w-full max-w-[480px]">
-              <img src="/profile.png" alt="Yunesh Timsina professional portrait" className="portrait-image" />
+            <div className="relative w-full max-w-[2048px] flex justify-center items-end">
+              <img 
+                src="/github-profile-logo.png" 
+                alt="" 
+                className="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[115%] max-w-[2048px] aspect-square object-contain opacity-[0.50] pointer-events-none z-0 filter blur-[1px] saturate-[1.1] transition-all duration-500 hover:opacity-[0.25]" 
+              />
+              <img src="/profile.png" alt="Yunesh Timsina professional portrait" className="portrait-image relative z-10" />
             </div>
           </div>
 

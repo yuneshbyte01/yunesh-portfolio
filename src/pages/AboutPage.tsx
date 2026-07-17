@@ -57,9 +57,10 @@ export function AboutPage() {
                 style={{ boxShadow: '0 0 0 4px var(--bg), 0 0 0 5px var(--border)' }}
                 aria-hidden="true"
               />
-              <div className="bg-[rgba(17,24,34,0.52)] backdrop-blur-[12px] border border-[var(--glass-border)] rounded-[var(--glass-radius-md)] px-6 py-[22px] shadow-[0_6px_20px_rgba(0,0,0,0.12),inset_0_1px_0_var(--glass-highlight)] transition-[border-color,background] duration-200 hover:border-[rgba(120,165,255,0.18)] hover:bg-[rgba(20,29,41,0.62)]">
-                <div className="flex justify-between gap-8">
-                  <h3 style={{ fontSize: '1.25rem', fontWeight: '600', marginBottom: 0 }}>{item.title}</h3>
+              <div className="group relative overflow-hidden bg-[rgba(17,24,34,0.52)] backdrop-blur-[12px] border border-[var(--glass-border)] rounded-[var(--glass-radius-md)] px-6 py-[22px] shadow-[0_6px_20px_rgba(0,0,0,0.12),inset_0_1px_0_var(--glass-highlight)] transition-all duration-300 hover:border-[var(--accent)]/30 hover:bg-[rgba(20,29,41,0.62)] hover:shadow-[0_20px_50px_rgba(76,141,255,0.12)]">
+                <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="flex justify-between gap-8 flex-wrap sm:flex-nowrap">
+                  <h3 style={{ fontSize: '1.25rem', fontWeight: '600', marginBottom: 0 }} className="group-hover:text-[var(--accent)] transition-colors duration-200">{item.title}</h3>
                   <p className="font-mono text-[0.76rem] font-semibold tracking-[0.1em] uppercase text-[var(--accent)] shrink-0">{item.period}</p>
                 </div>
                 <p style={{ marginTop: '8px', fontSize: '0.95rem', color: 'var(--text-secondary)', lineHeight: '1.6', maxWidth: '800px' }}>
@@ -79,8 +80,9 @@ export function AboutPage() {
           {philosophy.map((p) => (
             <article
               key={p.title}
-              className="min-h-[190px] p-[26px] bg-[rgba(17,24,34,0.52)] backdrop-blur-[12px] border border-[var(--glass-border)] rounded-[var(--glass-radius-md)] shadow-[0_6px_20px_rgba(0,0,0,0.12),inset_0_1px_0_var(--glass-highlight)] transition-[border-color,background] duration-200 hover:border-[rgba(120,165,255,0.18)] hover:bg-[rgba(20,29,41,0.62)]"
+              className="group relative overflow-hidden min-h-[190px] p-[26px] bg-[rgba(17,24,34,0.52)] backdrop-blur-[12px] border border-[var(--glass-border)] rounded-[var(--glass-radius-md)] shadow-[0_6px_20px_rgba(0,0,0,0.12),inset_0_1px_0_var(--glass-highlight)] transition-all duration-300 hover:border-[var(--accent)]/30 hover:bg-[rgba(20,29,41,0.62)] hover:shadow-[0_20px_50px_rgba(76,141,255,0.12)]"
             >
+              <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <p className="meta-label" style={{ color: 'var(--accent)' }}>{p.title}</p>
               <p style={{ marginTop: '12px', fontSize: '0.92rem', color: 'var(--text-secondary)', lineHeight: '1.6' }}>
                 {p.description}
@@ -100,13 +102,13 @@ export function AboutPage() {
           <p className="eyebrow" id="education-title">ACADEMICS</p>
           <h2 style={{ fontSize: '2.2rem', margin: '8px 0 32px' }}>Education</h2>
           <div className="flex flex-col gap-8">
-            <article className="border-l-2 border-[var(--accent)] pl-5">
-              <h3 style={{ fontSize: '1.25rem', margin: '0 0 4px', fontWeight: '600' }}>B.Sc. Information Technology</h3>
+            <article className="border-l-2 border-[var(--accent)] pl-5 group relative">
+              <h3 style={{ fontSize: '1.25rem', margin: '0 0 4px', fontWeight: '600' }} className="group-hover:text-[var(--accent)] transition-colors duration-200">B.Sc. Information Technology</h3>
               <p style={{ fontSize: '0.95rem', color: 'var(--text)', margin: '0 0 6px', fontWeight: '500' }}>Presidential Graduate School</p>
               <p className="eyebrow" style={{ color: 'var(--muted)', fontSize: '0.72rem' }}>2023 – Present</p>
             </article>
-            <article className="border-l-2 border-[var(--accent)] pl-5">
-              <h3 style={{ fontSize: '1.25rem', margin: '0 0 4px', fontWeight: '600' }}>Diploma in Civil Engineering</h3>
+            <article className="border-l-2 border-[var(--accent)] pl-5 group relative">
+              <h3 style={{ fontSize: '1.25rem', margin: '0 0 4px', fontWeight: '600' }} className="group-hover:text-[var(--accent)] transition-colors duration-200">Diploma in Civil Engineering</h3>
               <p style={{ fontSize: '0.95rem', color: 'var(--text)', margin: '0 0 6px', fontWeight: '500' }}>Mahendra Rastriya Secondary School</p>
               <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', margin: '0 0 6px' }}>CGPA: 3.28</p>
               <p className="eyebrow" style={{ color: 'var(--muted)', fontSize: '0.72rem' }}>2019 – 2023</p>
@@ -123,7 +125,7 @@ export function AboutPage() {
           </p>
           <ul className="flex flex-wrap gap-2 list-none m-0 p-0">
             {['Spring Security', 'PostgreSQL', 'Docker', 'System Design', 'Testing', 'Angular'].map((tech) => (
-              <li key={tech} className="px-3 py-1.5 border border-[var(--border)] rounded bg-[var(--surface)] text-[var(--text-secondary)] font-mono text-[0.8rem]">
+              <li key={tech} className="px-3 py-1.5 border border-[var(--border)] rounded-md bg-[rgba(28,33,40,0.4)] text-[var(--text-secondary)] font-mono text-[0.8rem] transition-all duration-200 hover:border-[var(--accent)]/30 hover:text-[var(--text)] hover:bg-[rgba(28,33,40,0.7)]">
                 {tech}
               </li>
             ))}

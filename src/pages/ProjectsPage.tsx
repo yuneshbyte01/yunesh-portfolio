@@ -16,23 +16,30 @@ interface FeaturedProject {
 function FeaturedProjectCard({ p }: { p: FeaturedProject }) {
   const { elementRef } = useTilt();
   return (
-    <article ref={elementRef as React.RefObject<HTMLDivElement>} className="repo-card">
-      <div className="flex justify-between items-center border-b border-[var(--border)] pb-3">
-        <div className="flex items-center gap-1 flex-wrap">
-          <span className="font-mono text-[var(--muted)] text-[0.9rem]">yuneshbyte01 /</span>
-          <h3 className="text-[1.15rem] font-bold m-0 text-[var(--text)] tracking-[-0.01em]">{p.name}</h3>
-          <span className="font-mono text-[0.64rem] text-[var(--success)] bg-[rgba(63,185,80,0.1)] border border-[rgba(63,185,80,0.2)] px-2 py-0.5 rounded-xl font-semibold ml-1">Completed</span>
+    <article 
+      ref={elementRef as React.RefObject<HTMLDivElement>} 
+      className="repo-card group relative overflow-hidden transition-all duration-300 hover:shadow-[0_20px_50px_rgba(76,141,255,0.15)] flex flex-col justify-between"
+    >
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      
+      <div>
+        <div className="flex justify-between items-center border-b border-[var(--border)] pb-3">
+          <div className="flex items-center gap-1 flex-wrap">
+            <span className="font-mono text-[var(--muted)] text-[0.9rem]">yuneshbyte01 /</span>
+            <h3 className="text-[1.15rem] font-bold m-0 text-[var(--text)] tracking-[-0.01em] group-hover:text-[var(--accent)] transition-colors duration-200">{p.name}</h3>
+            <span className="font-mono text-[0.64rem] text-[var(--success)] bg-[rgba(63,185,80,0.1)] border border-[rgba(63,185,80,0.2)] px-2 py-0.5 rounded-xl font-semibold ml-1">Completed</span>
+          </div>
+          <span className="font-mono text-[0.68rem] text-[var(--accent)] uppercase tracking-[0.05em]">{p.type}</span>
         </div>
-        <span className="font-mono text-[0.68rem] text-[var(--accent)] uppercase tracking-[0.05em]">{p.type}</span>
+
+        <p className="mt-4 mb-3 text-[1.02rem] font-medium text-[var(--text)]">{p.summary}</p>
+        <p className="m-0 text-[0.94rem] text-[var(--text-secondary)] leading-[1.6]">{p.description}</p>
       </div>
 
-      <p className="m-0 text-[1.02rem] font-medium text-[var(--text)]">{p.summary}</p>
-      <p className="m-0 text-[0.94rem] text-[var(--text-secondary)] leading-[1.6]">{p.description}</p>
-
-      <div className="flex justify-between items-center border-t border-[var(--border)] pt-3.5 mt-1 flex-wrap gap-4">
+      <div className="flex justify-between items-center border-t border-[var(--border)] pt-3.5 mt-5 flex-wrap gap-4">
         <ul className="flex flex-wrap gap-1.5 list-none m-0 p-0">
           {p.technologies.slice(0, 4).map((tech) => (
-            <li key={tech} className="font-mono text-[0.68rem] px-1.5 py-[3px] border border-[var(--border)] rounded bg-[var(--bg)] text-[var(--text-secondary)]">{tech}</li>
+            <li key={tech} className="font-mono text-[0.68rem] px-2 py-[4px] border border-[var(--border)] rounded bg-[var(--bg)] text-[var(--text-secondary)] transition-colors duration-200 group-hover:border-[var(--accent)]/30 group-hover:text-[var(--text)]">{tech}</li>
           ))}
         </ul>
         <div className="flex gap-4 items-center">
@@ -62,15 +69,20 @@ interface OtherProject {
 function OtherProjectCard({ p }: { p: OtherProject }) {
   const { elementRef } = useTilt();
   return (
-    <article ref={elementRef as React.RefObject<HTMLDivElement>} className="repo-card flex flex-col justify-between min-h-[220px]">
+    <article 
+      ref={elementRef as React.RefObject<HTMLDivElement>} 
+      className="repo-card group relative overflow-hidden flex flex-col justify-between min-h-[220px] transition-all duration-300 hover:shadow-[0_20px_50px_rgba(76,141,255,0.12)]"
+    >
+      <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      
       <div>
-        <h3 style={{ fontSize: '1.25rem', margin: '0 0 12px', fontWeight: '600' }}>{p.name}</h3>
+        <h3 style={{ fontSize: '1.25rem', margin: '0 0 12px', fontWeight: '600' }} className="group-hover:text-[var(--accent)] transition-colors duration-200">{p.name}</h3>
         <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: '1.6', margin: '0 0 18px' }}>{p.description}</p>
       </div>
       <div>
-        <ul className="flex flex-wrap gap-2 list-none m-0 mb-5 p-0">
+        <ul className="flex flex-wrap gap-1.5 list-none m-0 mb-5 p-0">
           {p.technologies.map((t) => (
-            <li key={t} className="font-mono text-[0.68rem] px-2 py-1 border border-[var(--border)] rounded bg-[var(--bg)] text-[var(--text-secondary)]">{t}</li>
+            <li key={t} className="font-mono text-[0.68rem] px-2 py-[4px] border border-[var(--border)] rounded bg-[var(--bg)] text-[var(--text-secondary)] transition-colors duration-200 group-hover:border-[var(--accent)]/30 group-hover:text-[var(--text)]">{t}</li>
           ))}
         </ul>
         <a className="text-link text-[0.88rem]" href={p.repository} target="_blank" rel="noreferrer">
@@ -120,25 +132,28 @@ export function ProjectsPage() {
       </header>
 
       {/* Featured */}
-      <section ref={revealFeatured.elementRef} aria-label="Featured Projects">
-        <h2 className="text-[1.8rem] border-b border-[var(--border)] pb-3.5 mb-8">Featured Systems</h2>
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-6">
+      <section ref={revealFeatured.elementRef} aria-label="Featured Projects" className="relative">
+        <div className="absolute right-[-10%] top-[10%] w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(76,141,255,0.03)_0%,transparent_70%)] pointer-events-none z-0" />
+        <h2 className="text-[1.8rem] border-b border-[var(--border)] pb-3.5 mb-8 relative z-10">Featured Systems</h2>
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-6 relative z-10">
           {featuredProjects.map((p) => <FeaturedProjectCard key={p.slug} p={p} />)}
         </div>
       </section>
 
       {/* Other */}
-      <section ref={revealOther.elementRef} aria-labelledby="other-projects-title" className="mt-24 border-t border-[var(--border)] pt-16">
+      <section ref={revealOther.elementRef} aria-labelledby="other-projects-title" className="mt-24 border-t border-[var(--border)] pt-16 relative">
+        <div className="absolute left-[-10%] top-[20%] w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(139,124,255,0.02)_0%,transparent_70%)] pointer-events-none z-0" />
         <p className="eyebrow" id="other-projects-title">SECONDARY REPOSITORIES</p>
-        <h2 style={{ fontSize: '2.2rem', margin: '8px 0 32px' }}>Other Projects</h2>
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(320px,1fr))] gap-6">
+        <h2 style={{ fontSize: '2.2rem', margin: '8px 0 32px' }} className="relative z-10">Other Projects</h2>
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(320px,1fr))] gap-6 relative z-10">
           {otherProjects.map((p) => <OtherProjectCard key={p.name} p={p} />)}
         </div>
       </section>
 
       {/* GitHub CTA */}
       <section ref={revealCta.elementRef} aria-labelledby="github-cta-title" className="mt-24 border-t border-[var(--border)] pt-16 pb-8">
-        <div style={{ border: '1px solid var(--border)', borderRadius: 'var(--radius)', background: 'var(--surface)', padding: '38px', textAlign: 'center' }}>
+        <div style={{ border: '1px solid var(--border)', borderRadius: 'var(--radius)', background: 'var(--surface)', padding: '38px', textAlign: 'center' }} className="group relative overflow-hidden">
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-30" />
           <p className="eyebrow">EXPLORE MORE WORK</p>
           <h2 id="github-cta-title" style={{ fontSize: '2rem', margin: '8px 0 16px' }}>Explore More Projects</h2>
           <p style={{ fontSize: '1.05rem', color: 'var(--text-secondary)', maxWidth: '680px', margin: '0 auto 28px', lineHeight: '1.6' }}>

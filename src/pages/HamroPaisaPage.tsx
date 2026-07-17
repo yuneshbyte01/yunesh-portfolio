@@ -50,19 +50,20 @@ public TransactionResponse transferFunds(TransferRequest request) {
 }`;
 
   return (
-    <div className="container min-h-[calc(100vh-300px)] py-[clamp(100px,14vw,180px)]">
+    <div className="container min-h-[calc(100vh-300px)] py-[clamp(100px,14vw,180px)] relative">
       <Link className="text-link inline-flex items-center gap-2 mb-8" to="/projects">
         <ArrowLeft style={{ width: '16px', height: '16px' }} /> Back to Projects
       </Link>
 
       {/* Case Study Header */}
-      <header className="relative overflow-hidden border border-[var(--border)] rounded-[var(--radius)] bg-[var(--surface)] p-[clamp(24px,5vw,42px)] mt-6 mb-12">
+      <header className="group relative overflow-hidden border border-[var(--border)] rounded-[var(--radius)] bg-[var(--surface)] p-[clamp(24px,5vw,42px)] mt-6 mb-12 shadow-[0_14px_38px_rgba(0,0,0,0.18)] hover:shadow-[0_20px_50px_rgba(76,141,255,0.12)] hover:border-[var(--accent)]/20 transition-all duration-300">
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-30 group-hover:opacity-100 transition-opacity duration-500" />
         <div>
           <div className="flex justify-between items-center mb-3 flex-wrap gap-3">
             <span className="eyebrow" style={{ margin: 0 }}>FINTECH BACKEND</span>
             <span className="inline-flex items-center gap-1.5 font-mono text-[0.78rem] text-[var(--success)] font-semibold"><span className="w-1.5 h-1.5 rounded-full bg-[var(--success)] shadow-[0_0_8px_var(--success)]" /> Completed</span>
           </div>
-          <h1 style={{ fontSize: 'clamp(2.2rem, 5vw, 3.8rem)', margin: '8px 0 16px', letterSpacing: '-0.02em' }}>HamroPaisa</h1>
+          <h1 style={{ fontSize: 'clamp(2.2rem, 5vw, 3.8rem)', margin: '8px 0 16px', letterSpacing: '-0.02em' }} className="group-hover:text-[var(--accent)] transition-colors duration-200">HamroPaisa</h1>
           <p className="text-[1.2rem] text-[var(--text-secondary)] max-w-[780px] leading-[1.6] mb-6">
             A production-style digital wallet API designed around strict transactional integrity, idempotency, and auditable accounting.
           </p>
@@ -73,7 +74,7 @@ public TransactionResponse transferFunds(TransferRequest request) {
           </div>
           <ul className="flex flex-wrap gap-2 list-none m-0 p-0 mt-6" aria-label="HamroPaisa technologies">
             {['Java', 'Spring Boot', 'PostgreSQL', 'Docker', 'Spring Security', 'JWT', 'REST API'].map((t) => (
-              <li key={t} className="px-3 py-1.5 border border-[var(--border)] rounded bg-[var(--bg)] text-[var(--text-secondary)] font-mono text-[0.76rem]">{t}</li>
+              <li key={t} className="px-3 py-1.5 border border-[var(--border)] rounded bg-[var(--bg)] text-[var(--text-secondary)] font-mono text-[0.76rem] transition-colors duration-200 group-hover:border-[var(--accent)]/30 group-hover:text-[var(--text)]">{t}</li>
             ))}
           </ul>
         </div>
@@ -82,7 +83,7 @@ public TransactionResponse transferFunds(TransferRequest request) {
       {/* Overview Section */}
       <section aria-labelledby="overview-title" style={{ borderTop: '1px solid var(--border)', paddingTop: '32px', marginBottom: '48px' }}>
         <h2 id="overview-title" className="meta-label" style={{ fontSize: '0.85rem', marginBottom: '16px' }}>Project Overview</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '48px' }}>
+        <div className="grid grid-cols-[1.2fr_0.8fr] gap-12 max-md:grid-cols-1 max-md:gap-8">
           <div>
             <p style={{ fontSize: '1.05rem', lineHeight: '1.7', color: 'var(--text)' }}>
               HamroPaisa is a digital wallet API engineered for secure peer-to-peer (P2P) transfers and financial ledger records. 
@@ -95,7 +96,7 @@ public TransactionResponse transferFunds(TransferRequest request) {
             </p>
           </div>
           <div>
-            <div className="border border-dashed border-[var(--border)] rounded-[var(--radius)] p-[42px_24px] bg-[var(--surface)] text-center">
+            <div className="border border-dashed border-[var(--border)] rounded-[var(--radius)] p-[42px_24px] bg-[rgba(22,27,34,0.4)] text-center group hover:border-[var(--accent)]/35 transition-colors duration-300">
               <p className="eyebrow" style={{ color: 'var(--muted)', marginBottom: '8px' }}>ARCHITECTURAL VISUAL</p>
               <p style={{ margin: 0, fontSize: '0.82rem', color: 'var(--text-secondary)' }}>
                 Production screenshots and API schema visualizations will be integrated after the active pipeline deployment.
@@ -113,41 +114,22 @@ public TransactionResponse transferFunds(TransferRequest request) {
         </p>
 
         <div className="flex flex-col gap-3 max-w-[600px] mt-7">
-          <div className="flex flex-col items-center">
-            <div className="w-full px-4 py-2.5 bg-[var(--surface-2)] border border-[var(--border)] border-l-[3px] border-l-[var(--accent)] rounded text-[var(--text)] font-mono text-[0.8rem] flex justify-between items-center shadow-[0_2px_6px_rgba(0,0,0,0.15)]">
-              Client Application <span>Mobile / Web</span>
+          {[
+            { title: 'Client Application', label: 'Mobile / Web' },
+            { title: 'REST Controller', label: 'API Entry' },
+            { title: 'Spring Security', label: 'Filter / JWT' },
+            { title: 'Wallet Service', label: 'Core Logic' },
+            { title: 'JPA Repositories', label: 'Optimistic Lock' },
+            { title: 'PostgreSQL', label: 'Ledger DB' },
+          ].map((node, index) => (
+            <div key={node.title} className="flex flex-col items-center group w-full">
+              <div className="w-full px-5 py-3.5 bg-[var(--surface-2)] border border-[var(--border)] border-l-[3px] border-l-[var(--accent)] rounded-md text-[var(--text)] font-mono text-[0.8rem] flex justify-between items-center shadow-[0_2px_6px_rgba(0,0,0,0.15)] transition-all duration-200 hover:bg-[rgba(28,33,40,0.85)] hover:border-[var(--accent)]/40 hover:shadow-[0_4px_12px_rgba(76,141,255,0.08)]">
+                <span className="font-semibold group-hover:text-[var(--accent)] transition-colors duration-200">{node.title}</span>
+                <span className="text-[var(--muted)] text-[0.74rem]">{node.label}</span>
+              </div>
+              {index < 5 && <div className="text-[var(--muted)] text-[1.1rem] py-1 text-center font-bold">↓</div>}
             </div>
-            <div className="text-[var(--muted)] text-[1.1rem] py-1 text-center">↓</div>
-          </div>
-          <div className="flex flex-col items-center">
-            <div className="w-full px-4 py-2.5 bg-[var(--surface-2)] border border-[var(--border)] border-l-[3px] border-l-[var(--accent)] rounded text-[var(--text)] font-mono text-[0.8rem] flex justify-between items-center shadow-[0_2px_6px_rgba(0,0,0,0.15)]">
-              REST Controller <span>API Entry</span>
-            </div>
-            <div className="text-[var(--muted)] text-[1.1rem] py-1 text-center">↓</div>
-          </div>
-          <div className="flex flex-col items-center">
-            <div className="w-full px-4 py-2.5 bg-[var(--surface-2)] border border-[var(--border)] border-l-[3px] border-l-[var(--accent)] rounded text-[var(--text)] font-mono text-[0.8rem] flex justify-between items-center shadow-[0_2px_6px_rgba(0,0,0,0.15)]">
-              Spring Security <span>Filter / JWT</span>
-            </div>
-            <div className="text-[var(--muted)] text-[1.1rem] py-1 text-center">↓</div>
-          </div>
-          <div className="flex flex-col items-center">
-            <div className="w-full px-4 py-2.5 bg-[var(--surface-2)] border border-[var(--border)] border-l-[3px] border-l-[var(--accent)] rounded text-[var(--text)] font-mono text-[0.8rem] flex justify-between items-center shadow-[0_2px_6px_rgba(0,0,0,0.15)]">
-              Wallet Service <span>Core Logic</span>
-            </div>
-            <div className="text-[var(--muted)] text-[1.1rem] py-1 text-center">↓</div>
-          </div>
-          <div className="flex flex-col items-center">
-            <div className="w-full px-4 py-2.5 bg-[var(--surface-2)] border border-[var(--border)] border-l-[3px] border-l-[var(--accent)] rounded text-[var(--text)] font-mono text-[0.8rem] flex justify-between items-center shadow-[0_2px_6px_rgba(0,0,0,0.15)]">
-              JPA Repositories <span>Optimistic Lock</span>
-            </div>
-            <div className="text-[var(--muted)] text-[1.1rem] py-1 text-center">↓</div>
-          </div>
-          <div className="flex flex-col items-center">
-            <div className="w-full px-4 py-2.5 bg-[var(--surface-2)] border border-[var(--border)] border-l-[3px] border-l-[var(--accent)] rounded text-[var(--text)] font-mono text-[0.8rem] flex justify-between items-center shadow-[0_2px_6px_rgba(0,0,0,0.15)]">
-              PostgreSQL <span>Ledger DB</span>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
 
@@ -155,30 +137,18 @@ public TransactionResponse transferFunds(TransferRequest request) {
       <section aria-labelledby="features-title" style={{ borderTop: '1px solid var(--border)', paddingTop: '32px', marginBottom: '48px' }}>
         <h2 id="features-title" className="meta-label" style={{ fontSize: '0.85rem', marginBottom: '24px' }}>Core Backend Features</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '28px' }}>
-          <div>
-            <h3 style={{ fontSize: '1.2rem', fontWeight: '600', marginBottom: '8px' }}>Double-Entry Ledger</h3>
-            <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: '1.6' }}>
-              Guarantees financial consistency. Every money transfer logs matching credit and debit entries, ensuring the net change across the ledger equals zero.
-            </p>
-          </div>
-          <div>
-            <h3 style={{ fontSize: '1.2rem', fontWeight: '600', marginBottom: '8px' }}>Idempotent Transfers</h3>
-            <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: '1.6' }}>
-              Enforces safety on network retries. Transfer endpoints require a unique idempotency key header, returning cached responses for identical duplicate payloads.
-            </p>
-          </div>
-          <div>
-            <h3 style={{ fontSize: '1.2rem', fontWeight: '600', marginBottom: '8px' }}>Optimistic Concurrency</h3>
-            <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: '1.6' }}>
-              Uses JPA version checks on wallet balances to reject concurrent, overlapping transactions that would otherwise cause double-spending or dirty reads.
-            </p>
-          </div>
-          <div>
-            <h3 style={{ fontSize: '1.2rem', fontWeight: '600', marginBottom: '8px' }}>Role-Based Access (RBAC)</h3>
-            <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: '1.6' }}>
-              Enforces authorization tiers, protecting administrative endpoints (like account block/unblock) from standard client wallet roles.
-            </p>
-          </div>
+          {[
+            { title: 'Double-Entry Ledger', desc: 'Guarantees financial consistency. Every money transfer logs matching credit and debit entries, ensuring the net change across the ledger equals zero.' },
+            { title: 'Idempotent Transfers', desc: 'Enforces safety on network retries. Transfer endpoints require a unique idempotency key header, returning cached responses for identical duplicate payloads.' },
+            { title: 'Optimistic Concurrency', desc: 'Uses JPA version checks on wallet balances to reject concurrent, overlapping transactions that would otherwise cause double-spending or dirty reads.' },
+            { title: 'Role-Based Access (RBAC)', desc: 'Enforces authorization tiers, protecting administrative endpoints (like account block/unblock) from standard client wallet roles.' },
+          ].map((feat) => (
+            <article key={feat.title} className="group relative overflow-hidden p-5 border border-[var(--border)] rounded-md bg-[rgba(22,27,34,0.4)] transition-all duration-300 hover:border-[var(--accent)]/30 hover:shadow-[0_12px_28px_rgba(0,0,0,0.15)] hover:bg-[rgba(28,33,40,0.5)]">
+              <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[var(--accent)]/30 to-transparent" />
+              <h3 style={{ fontSize: '1.2rem', fontWeight: '600', marginBottom: '8px' }} className="group-hover:text-[var(--accent)] transition-colors duration-200">{feat.title}</h3>
+              <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: '1.6', margin: 0 }}>{feat.desc}</p>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -186,59 +156,54 @@ public TransactionResponse transferFunds(TransferRequest request) {
       <section aria-labelledby="challenges-title" style={{ borderTop: '1px solid var(--border)', paddingTop: '32px', marginBottom: '48px' }}>
         <h2 id="challenges-title" className="meta-label" style={{ fontSize: '0.85rem', marginBottom: '16px' }}>Technical Challenges</h2>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', maxWidth: '820px' }}>
-          <div>
-            <h3 style={{ fontSize: '1.25rem', fontWeight: '600', marginBottom: '8px' }}>1. Managing High-Concurrency Wallet Updates</h3>
-            <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', lineHeight: '1.6' }}>
-              During rapid P2P requests, multiple processes may query the same wallet balance, leading to lost updates. 
-              Instead of using heavy database pessimistic locks that choke transaction throughput, I applied optimistic locking using `@Version` fields. 
-              This rejects outdated writes, throwing specific exceptions that the API catches and translates into client retry requests.
-            </p>
-          </div>
-          <div>
-            <h3 style={{ fontSize: '1.25rem', fontWeight: '600', marginBottom: '8px' }}>2. Balancing Audit Logging vs. Transaction Speed</h3>
-            <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', lineHeight: '1.6' }}>
-              Logging every ledger activity synchronously increases request latency. To maintain throughput, I decoupled core transactional ledger saving from general audit logs. 
-              Ledger records are written synchronously in the same transaction block to maintain database integrity, while visual and debug audit logs are dispatched to application filters to optimize execution paths.
-            </p>
-          </div>
+          {[
+            { q: '1. Managing High-Concurrency Wallet Updates', a: 'During rapid P2P requests, multiple processes may query the same wallet balance, leading to lost updates. Instead of using heavy database pessimistic locks that choke transaction throughput, I applied optimistic locking using `@Version` fields. This rejects outdated writes, throwing specific exceptions that the API catches and translates into client retry requests.' },
+            { q: '2. Balancing Audit Logging vs. Transaction Speed', a: 'Logging every ledger activity synchronously increases request latency. To maintain throughput, I decoupled core transactional ledger saving from general audit logs. Ledger records are written synchronously in the same transaction block to maintain database integrity, while visual and debug audit logs are dispatched to application filters to optimize execution paths.' }
+          ].map((item) => (
+            <div key={item.q} className="group border-l-2 border-[var(--accent)]/30 pl-5 hover:border-[var(--accent)] transition-colors duration-300">
+              <h3 style={{ fontSize: '1.25rem', fontWeight: '600', marginBottom: '8px' }} className="group-hover:text-[var(--accent)] transition-colors duration-200">{item.q}</h3>
+              <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', lineHeight: '1.6', margin: 0 }}>{item.a}</p>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* Code Snippet */}
       <section aria-labelledby="code-title" style={{ borderTop: '1px solid var(--border)', paddingTop: '32px', marginBottom: '48px' }}>
         <h2 id="code-title" className="meta-label" style={{ fontSize: '0.85rem', marginBottom: '16px' }}>Core Transfer Implementation</h2>
-        <div className="mt-7">
-          <div className="px-3.5 py-2.5 bg-[var(--surface-2)] border border-[var(--border)] border-b-0 rounded-t font-mono text-[0.78rem] text-[var(--text-secondary)]">WalletService.java (Factual Transaction Handler)</div>
-          <pre className="!m-0 p-4 bg-[#090d13] border border-[var(--border)] rounded-b overflow-x-auto font-mono text-[0.82rem] leading-[1.5]"><code>{codeSnippet}</code></pre>
+        <div className="mt-7 group">
+          <div className="px-4 py-3 bg-[var(--surface-2)] border border-[var(--border)] border-b-0 rounded-t-md font-mono text-[0.78rem] text-[var(--text-secondary)] flex justify-between items-center group-hover:border-[var(--accent)]/30 transition-all duration-300">
+            <span>WalletService.java (Factual Transaction Handler)</span>
+            <span className="text-[var(--accent)] text-[0.72rem] uppercase font-bold tracking-[0.05em]">Spring / Java</span>
+          </div>
+          <pre className="!m-0 p-5 bg-[#090d13] border border-[var(--border)] rounded-b-md overflow-x-auto font-mono text-[0.82rem] leading-[1.6] group-hover:border-[var(--accent)]/30 transition-all duration-300 shadow-[inset_0_4px_12px_rgba(0,0,0,0.5)]">
+            <code className="text-[#c9d1d9]">{codeSnippet}</code>
+          </pre>
         </div>
       </section>
 
       {/* Technology Stack Grouped */}
       <section aria-labelledby="stack-title" style={{ borderTop: '1px solid var(--border)', paddingTop: '32px', marginBottom: '48px' }}>
         <h2 id="stack-title" className="meta-label" style={{ fontSize: '0.85rem', marginBottom: '24px' }}>Detailed Technology Stack</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '24px' }}>
-          <div>
-            <h4 className="meta-label" style={{ color: 'var(--accent)' }}>Languages</h4>
-            <p style={{ fontSize: '0.95rem', color: 'var(--text)' }}>Java (JDK 17), SQL</p>
-          </div>
-          <div>
-            <h4 className="meta-label" style={{ color: 'var(--accent)' }}>Frameworks</h4>
-            <p style={{ fontSize: '0.95rem', color: 'var(--text)' }}>Spring Boot, Spring Security, Spring Data JPA, Hibernate</p>
-          </div>
-          <div>
-            <h4 className="meta-label" style={{ color: 'var(--accent)' }}>Database</h4>
-            <p style={{ fontSize: '0.95rem', color: 'var(--text)' }}>PostgreSQL (Relational Ledger)</p>
-          </div>
-          <div>
-            <h4 className="meta-label" style={{ color: 'var(--accent)' }}>Tools & Testing</h4>
-            <p style={{ fontSize: '0.95rem', color: 'var(--text)' }}>Docker, Maven, JUnit 5, Mockito, Postman</p>
-          </div>
+        <div className="grid grid-cols-4 gap-6 max-md:grid-cols-2 max-sm:grid-cols-1">
+          {[
+            { title: 'Languages', items: 'Java (JDK 17), SQL' },
+            { title: 'Frameworks', items: 'Spring Boot, Spring Security, Spring Data JPA, Hibernate' },
+            { title: 'Database', items: 'PostgreSQL (Relational Ledger)' },
+            { title: 'Tools & Testing', items: 'Docker, Maven, JUnit 5, Mockito, Postman' }
+          ].map((col) => (
+            <div key={col.title} className="group pl-4 border-l border-[var(--border)] hover:border-[var(--accent)] transition-colors duration-200">
+              <h4 className="meta-label text-[0.72rem] tracking-[0.05em] uppercase" style={{ color: 'var(--accent)', marginBottom: '8px' }}>{col.title}</h4>
+              <p style={{ fontSize: '0.95rem', color: 'var(--text)', margin: 0 }}>{col.items}</p>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* GitHub CTA */}
       <footer style={{ borderTop: '1px solid var(--border)', paddingTop: '48px', paddingBottom: '32px', textAlign: 'center' }}>
-        <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius)', padding: '32px' }}>
+        <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius)', padding: '38px' }} className="group relative overflow-hidden">
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-30" />
           <p className="eyebrow">VERIFIED REPOSITORY</p>
           <h3 style={{ fontSize: '1.6rem', margin: '8px 0 16px' }}>Review the Full Codebase</h3>
           <p style={{ fontSize: '1rem', color: 'var(--text-secondary)', maxWidth: '580px', margin: '0 auto 24px', lineHeight: '1.6' }}>
