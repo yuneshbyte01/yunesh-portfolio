@@ -5,7 +5,16 @@ import { Github, Linkedin, Mail } from 'lucide-react';
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 15);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -20,11 +29,17 @@ export function Header() {
   }, [isOpen]);
 
   return (
-    <header className="site-header">
-      <div className="container nav-shell">
-        <NavLink className="brand" to="/" onClick={() => setIsOpen(false)} aria-label="Yunesh Timsina, home">
+    <header className={`site-header ${scrolled ? 'scrolled' : ''}`}>
+      <div className="container flex items-center justify-between gap-7 min-h-[68px]">
+        <NavLink
+          className="font-bold tracking-tight no-underline whitespace-nowrap text-[var(--text)]"
+          to="/"
+          onClick={() => setIsOpen(false)}
+          aria-label="Yunesh Timsina, home"
+        >
           Yunesh Timsina
         </NavLink>
+
         <button
           ref={menuButtonRef}
           className="menu-toggle"
@@ -36,7 +51,12 @@ export function Header() {
           <span aria-hidden="true">{isOpen ? 'Close' : 'Menu'}</span>
           <span className="sr-only">{isOpen ? 'Close navigation' : 'Open navigation'}</span>
         </button>
-        <nav id="primary-navigation" className={isOpen ? 'primary-nav is-open' : 'primary-nav'} aria-label="Primary navigation">
+
+        <nav
+          id="primary-navigation"
+          className={isOpen ? 'primary-nav is-open' : 'primary-nav'}
+          aria-label="Primary navigation"
+        >
           {navigation.map((item) => (
             <NavLink
               key={item.path}
@@ -48,7 +68,7 @@ export function Header() {
               {item.label}
             </NavLink>
           ))}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginLeft: '12px' }}>
+          <div className="flex items-center gap-3.5 ml-3">
             <a className="button button-small" href="/Resume.pdf" target="_blank" rel="noreferrer">Resume</a>
             <a className="icon-link" href="https://github.com/yuneshbyte01" target="_blank" rel="noreferrer" aria-label="GitHub" data-tooltip="GitHub"><Github /></a>
             <a className="icon-link" href="https://www.linkedin.com/in/yunesh-timsina-898775346/" target="_blank" rel="noreferrer" aria-label="LinkedIn" data-tooltip="LinkedIn"><Linkedin /></a>

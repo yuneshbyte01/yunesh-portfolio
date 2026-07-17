@@ -4,22 +4,22 @@ import { Github, Linkedin, Mail, FileText } from 'lucide-react';
 export function Footer() {
   const getIcon = (label: string) => {
     switch (label.toLowerCase()) {
-      case 'github':
-        return <Github />;
-      case 'linkedin':
-        return <Linkedin />;
-      case 'email':
-        return <Mail />;
-      default:
-        return <FileText />;
+      case 'github':   return <Github />;
+      case 'linkedin': return <Linkedin />;
+      case 'email':    return <Mail />;
+      default:         return <FileText />;
     }
   };
 
   return (
     <footer className="site-footer">
-      <div className="container footer-grid">
-        <div><strong>Yunesh Timsina</strong><span>Backend Engineer</span></div>
-        <div className="footer-links" aria-label="Social links">
+      <div className="container grid grid-cols-[1fr_auto] gap-7 items-start">
+        <div>
+          <strong className="block">Yunesh Timsina</strong>
+          <span className="block text-[var(--muted)] text-[0.85rem] mt-1">Backend Engineer</span>
+        </div>
+
+        <div className="flex gap-5" aria-label="Social links">
           {socials.map((social) => (
             <a
               key={social.label}
@@ -44,7 +44,10 @@ export function Footer() {
             <FileText />
           </a>
         </div>
-        <p>&copy; {new Date().getFullYear()} Yunesh Timsina. Built with React and TypeScript.</p>
+
+        <p className="col-span-full pt-6 border-t border-[var(--glass-border)] text-[var(--muted)] text-[0.85rem] mt-0">
+          &copy; {new Date().getFullYear()} Yunesh Timsina. Built with React and TypeScript.
+        </p>
       </div>
     </footer>
   );

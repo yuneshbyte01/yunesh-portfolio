@@ -14,30 +14,33 @@ export function Hero() {
         <div className="hero-gradient-layer hero-layer-3" />
       </div>
 
-      <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-        {/* Actual Hero Content Grid */}
+      <div className="container relative z-[2]">
+        {/* Hero Content Grid */}
         <div className="hero-grid">
+
           {/* Left Column */}
-          <div className="hero-left">
-            <div className="hero-accent-line" />
+          <div className="flex flex-col justify-center z-[2]">
+            <div className="w-10 h-0.5 bg-[var(--accent)] mb-3" />
             <span className="eyebrow" style={{ color: 'var(--muted)', letterSpacing: '0.1em' }}>BACKEND ENGINEER</span>
-            <h1 id="hero-title">Yunesh Timsina</h1>
+            <h1 id="hero-title" className="[font-size:clamp(2.6rem,5.5vw,4.4rem)] font-extrabold mt-3 mb-2 leading-[1.05] tracking-[-0.03em] text-[var(--text)]">
+              Yunesh Timsina
+            </h1>
             <h2 className="hero-subtitle-line">I build secure backend systems.</h2>
-            <p className="hero-support-desc">
+            <p className="max-w-[480px] text-[1.02rem] leading-[1.65] text-[var(--text-secondary)] mb-7">
               I design REST APIs, authentication systems, and database-driven applications using Java, Spring Boot, PostgreSQL, and clean backend architecture.
             </p>
-            
-            <div className="button-row" style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '16px' }}>
+
+            <div className="flex flex-wrap items-center gap-4">
               <Link className="button button-primary" to="/projects">View Projects</Link>
               <a className="button" href="/Resume.pdf" target="_blank" rel="noreferrer">Download CV</a>
-              <div className="connect-icons-row" style={{ marginLeft: '8px' }}>
+              <div className="flex items-center gap-3 ml-2">
                 <a className="icon-link" href="https://github.com/yuneshbyte01" target="_blank" rel="noreferrer" aria-label="GitHub" data-tooltip="GitHub"><Github /></a>
                 <a className="icon-link" href="https://www.linkedin.com/in/yunesh-timsina-898775346/" target="_blank" rel="noreferrer" aria-label="LinkedIn" data-tooltip="LinkedIn"><Linkedin /></a>
                 <a className="icon-link" href="mailto:yuneshtimsina@gmail.com" aria-label="Email" data-tooltip="Email"><Mail /></a>
               </div>
             </div>
 
-            <div className="scroll-indicator-container">
+            <div className="mt-12">
               <a href="#highlights" className="scroll-indicator" aria-label="Scroll to core highlights">
                 <ArrowDown />
               </a>
@@ -45,30 +48,30 @@ export function Hero() {
           </div>
 
           {/* Center Column (Portrait Visual Overlap) */}
-          <div className="hero-center">
+          <div className="flex justify-center items-end relative z-[1]">
             <div className="portrait-accent-glow" />
-            <div className="portrait-container">
-              <img src="/profile.jpg" alt="Yunesh Timsina professional portrait" className="portrait-image" />
+            <div className="relative w-full max-w-[480px]">
+              <img src="/profile.png" alt="Yunesh Timsina professional portrait" className="portrait-image" />
             </div>
           </div>
 
           {/* Right Column (Stacked Directory Sidebar) */}
-          <div className="hero-right">
-            <div className="sidebar-block">
+          <div className="flex flex-col gap-7 z-[2]">
+            <div className="border-b border-[var(--border)] pb-5">
               <span className="eyebrow">ABOUT</span>
-              <p>Backend Engineer and BSc Information Technology student based in Kathmandu, Nepal.</p>
+              <p className="text-[0.94rem] leading-[1.6] text-[var(--text-secondary)] mt-2 mb-3">Backend Engineer and BSc Information Technology student based in Kathmandu, Nepal.</p>
               <Link className="text-link" to="/about">More about me <span aria-hidden="true">→</span></Link>
             </div>
 
-            <div className="sidebar-block">
+            <div className="border-b border-[var(--border)] pb-5">
               <span className="eyebrow">CURRENT WORK</span>
-              <p>Building secure, production-style backend systems focused on APIs, authentication, payments, bookings, and relational databases.</p>
+              <p className="text-[0.94rem] leading-[1.6] text-[var(--text-secondary)] mt-2 mb-3">Building secure, production-style backend systems focused on APIs, authentication, payments, bookings, and relational databases.</p>
               <Link className="text-link" to="/projects">Browse projects <span aria-hidden="true">→</span></Link>
             </div>
 
-            <div className="sidebar-block">
+            <div>
               <span className="eyebrow">CONNECT</span>
-              <div className="connect-icons-row">
+              <div className="flex items-center gap-3 mt-2">
                 <a className="icon-link" href="https://github.com/yuneshbyte01" target="_blank" rel="noreferrer" aria-label="GitHub" data-tooltip="GitHub"><Github /></a>
                 <a className="icon-link" href="https://www.linkedin.com/in/yunesh-timsina-898775346/" target="_blank" rel="noreferrer" aria-label="LinkedIn" data-tooltip="LinkedIn"><Linkedin /></a>
                 <a className="icon-link" href="mailto:yuneshtimsina@gmail.com" aria-label="Email" data-tooltip="Email"><Mail /></a>
@@ -76,6 +79,7 @@ export function Hero() {
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>

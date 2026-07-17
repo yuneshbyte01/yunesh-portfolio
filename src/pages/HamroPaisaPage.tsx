@@ -50,30 +50,30 @@ public TransactionResponse transferFunds(TransferRequest request) {
 }`;
 
   return (
-    <div className="container page-shell">
-      <Link className="text-link" to="/projects" style={{ marginBottom: '32px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+    <div className="container min-h-[calc(100vh-300px)] py-[clamp(100px,14vw,180px)]">
+      <Link className="text-link inline-flex items-center gap-2 mb-8" to="/projects">
         <ArrowLeft style={{ width: '16px', height: '16px' }} /> Back to Projects
       </Link>
 
       {/* Case Study Header */}
-      <header className="case-study-header engineering-grid-bg">
+      <header className="relative overflow-hidden border border-[var(--border)] rounded-[var(--radius)] bg-[var(--surface)] p-[clamp(24px,5vw,42px)] mt-6 mb-12">
         <div>
-          <div className="header-meta">
+          <div className="flex justify-between items-center mb-3 flex-wrap gap-3">
             <span className="eyebrow" style={{ margin: 0 }}>FINTECH BACKEND</span>
-            <span className="header-status"><span className="status-dot-small" /> Completed</span>
+            <span className="inline-flex items-center gap-1.5 font-mono text-[0.78rem] text-[var(--success)] font-semibold"><span className="w-1.5 h-1.5 rounded-full bg-[var(--success)] shadow-[0_0_8px_var(--success)]" /> Completed</span>
           </div>
           <h1 style={{ fontSize: 'clamp(2.2rem, 5vw, 3.8rem)', margin: '8px 0 16px', letterSpacing: '-0.02em' }}>HamroPaisa</h1>
-          <p className="header-summary">
+          <p className="text-[1.2rem] text-[var(--text-secondary)] max-w-[780px] leading-[1.6] mb-6">
             A production-style digital wallet API designed around strict transactional integrity, idempotency, and auditable accounting.
           </p>
-          <div className="header-actions">
+          <div className="flex gap-4 items-center">
             <a className="button button-small" href="https://github.com/yuneshbyte01/digital-wallet-api" target="_blank" rel="noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
               <Github style={{ width: '16px', height: '16px' }} /> Source <ArrowUpRight style={{ width: '14px', height: '14px' }} />
             </a>
           </div>
-          <ul className="tag-list" aria-label="HamroPaisa technologies" style={{ marginTop: '24px' }}>
+          <ul className="flex flex-wrap gap-2 list-none m-0 p-0 mt-6" aria-label="HamroPaisa technologies">
             {['Java', 'Spring Boot', 'PostgreSQL', 'Docker', 'Spring Security', 'JWT', 'REST API'].map((t) => (
-              <li key={t}>{t}</li>
+              <li key={t} className="px-3 py-1.5 border border-[var(--border)] rounded bg-[var(--bg)] text-[var(--text-secondary)] font-mono text-[0.76rem]">{t}</li>
             ))}
           </ul>
         </div>
@@ -95,7 +95,7 @@ public TransactionResponse transferFunds(TransferRequest request) {
             </p>
           </div>
           <div>
-            <div className="project-placeholder-visual">
+            <div className="border border-dashed border-[var(--border)] rounded-[var(--radius)] p-[42px_24px] bg-[var(--surface)] text-center">
               <p className="eyebrow" style={{ color: 'var(--muted)', marginBottom: '8px' }}>ARCHITECTURAL VISUAL</p>
               <p style={{ margin: 0, fontSize: '0.82rem', color: 'var(--text-secondary)' }}>
                 Production screenshots and API schema visualizations will be integrated after the active pipeline deployment.
@@ -112,39 +112,39 @@ public TransactionResponse transferFunds(TransferRequest request) {
           A multi-layered request flow implementing security authentication filters, service validation rules, transactional limits, and relational locks before writing records to PostgreSQL.
         </p>
 
-        <div className="architecture-flow">
-          <div className="architecture-node">
-            <div className="architecture-box">
+        <div className="flex flex-col gap-3 max-w-[600px] mt-7">
+          <div className="flex flex-col items-center">
+            <div className="w-full px-4 py-2.5 bg-[var(--surface-2)] border border-[var(--border)] border-l-[3px] border-l-[var(--accent)] rounded text-[var(--text)] font-mono text-[0.8rem] flex justify-between items-center shadow-[0_2px_6px_rgba(0,0,0,0.15)]">
               Client Application <span>Mobile / Web</span>
             </div>
-            <div className="architecture-arrow">↓</div>
+            <div className="text-[var(--muted)] text-[1.1rem] py-1 text-center">↓</div>
           </div>
-          <div className="architecture-node">
-            <div className="architecture-box">
+          <div className="flex flex-col items-center">
+            <div className="w-full px-4 py-2.5 bg-[var(--surface-2)] border border-[var(--border)] border-l-[3px] border-l-[var(--accent)] rounded text-[var(--text)] font-mono text-[0.8rem] flex justify-between items-center shadow-[0_2px_6px_rgba(0,0,0,0.15)]">
               REST Controller <span>API Entry</span>
             </div>
-            <div className="architecture-arrow">↓</div>
+            <div className="text-[var(--muted)] text-[1.1rem] py-1 text-center">↓</div>
           </div>
-          <div className="architecture-node">
-            <div className="architecture-box">
+          <div className="flex flex-col items-center">
+            <div className="w-full px-4 py-2.5 bg-[var(--surface-2)] border border-[var(--border)] border-l-[3px] border-l-[var(--accent)] rounded text-[var(--text)] font-mono text-[0.8rem] flex justify-between items-center shadow-[0_2px_6px_rgba(0,0,0,0.15)]">
               Spring Security <span>Filter / JWT</span>
             </div>
-            <div className="architecture-arrow">↓</div>
+            <div className="text-[var(--muted)] text-[1.1rem] py-1 text-center">↓</div>
           </div>
-          <div className="architecture-node">
-            <div className="architecture-box">
+          <div className="flex flex-col items-center">
+            <div className="w-full px-4 py-2.5 bg-[var(--surface-2)] border border-[var(--border)] border-l-[3px] border-l-[var(--accent)] rounded text-[var(--text)] font-mono text-[0.8rem] flex justify-between items-center shadow-[0_2px_6px_rgba(0,0,0,0.15)]">
               Wallet Service <span>Core Logic</span>
             </div>
-            <div className="architecture-arrow">↓</div>
+            <div className="text-[var(--muted)] text-[1.1rem] py-1 text-center">↓</div>
           </div>
-          <div className="architecture-node">
-            <div className="architecture-box">
+          <div className="flex flex-col items-center">
+            <div className="w-full px-4 py-2.5 bg-[var(--surface-2)] border border-[var(--border)] border-l-[3px] border-l-[var(--accent)] rounded text-[var(--text)] font-mono text-[0.8rem] flex justify-between items-center shadow-[0_2px_6px_rgba(0,0,0,0.15)]">
               JPA Repositories <span>Optimistic Lock</span>
             </div>
-            <div className="architecture-arrow">↓</div>
+            <div className="text-[var(--muted)] text-[1.1rem] py-1 text-center">↓</div>
           </div>
-          <div className="architecture-node">
-            <div className="architecture-box">
+          <div className="flex flex-col items-center">
+            <div className="w-full px-4 py-2.5 bg-[var(--surface-2)] border border-[var(--border)] border-l-[3px] border-l-[var(--accent)] rounded text-[var(--text)] font-mono text-[0.8rem] flex justify-between items-center shadow-[0_2px_6px_rgba(0,0,0,0.15)]">
               PostgreSQL <span>Ledger DB</span>
             </div>
           </div>
@@ -207,9 +207,9 @@ public TransactionResponse transferFunds(TransferRequest request) {
       {/* Code Snippet */}
       <section aria-labelledby="code-title" style={{ borderTop: '1px solid var(--border)', paddingTop: '32px', marginBottom: '48px' }}>
         <h2 id="code-title" className="meta-label" style={{ fontSize: '0.85rem', marginBottom: '16px' }}>Core Transfer Implementation</h2>
-        <div className="code-snippet-container">
-          <div className="code-snippet-title">WalletService.java (Factual Transaction Handler)</div>
-          <pre><code>{codeSnippet}</code></pre>
+        <div className="mt-7">
+          <div className="px-3.5 py-2.5 bg-[var(--surface-2)] border border-[var(--border)] border-b-0 rounded-t font-mono text-[0.78rem] text-[var(--text-secondary)]">WalletService.java (Factual Transaction Handler)</div>
+          <pre className="!m-0 p-4 bg-[#090d13] border border-[var(--border)] rounded-b overflow-x-auto font-mono text-[0.82rem] leading-[1.5]"><code>{codeSnippet}</code></pre>
         </div>
       </section>
 

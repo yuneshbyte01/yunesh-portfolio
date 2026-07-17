@@ -6,15 +6,18 @@ export function Expertise() {
   const { elementRef } = useScrollReveal();
 
   return (
-    <section ref={elementRef} className="section container" aria-labelledby="expertise-title">
+    <section ref={elementRef} className="py-[clamp(72px,10vw,128px)] container" aria-labelledby="expertise-title">
       <SectionHeading eyebrow="EXPERTISE / 04" title="Tools for dependable backend delivery." />
-      <div className="expertise-grid">
+      <div className="grid grid-cols-3 gap-4 max-md:grid-cols-2 max-sm:grid-cols-1">
         {skillGroups.map((group) => (
-          <article className={group.featured ? 'skill-group featured' : 'skill-group'} key={group.title}>
+          <article
+            key={group.title}
+            className={`min-h-[200px] p-[26px] bg-[rgba(17,24,34,0.52)] backdrop-blur-[12px] saturate-[110%] border border-[var(--glass-border)] rounded-[var(--glass-radius-md)] shadow-[0_6px_20px_rgba(0,0,0,0.12),inset_0_1px_0_var(--glass-highlight)] transition-[border-color,background] duration-200 hover:border-[rgba(120,165,255,0.18)] hover:bg-[rgba(20,29,41,0.62)] ${group.featured ? 'col-span-2 max-sm:col-span-1 bg-[rgba(22,30,42,0.58)]' : ''}`}
+          >
             <p className="meta-label">{group.title}</p>
-            <ul>
+            <ul className="list-none p-0 mt-5 flex flex-wrap gap-[10px_18px]">
               {group.skills.map((skill) => (
-                <li key={skill}>{skill}</li>
+                <li key={skill} className="text-[var(--text)] text-[1.02rem]">{skill}</li>
               ))}
             </ul>
           </article>
